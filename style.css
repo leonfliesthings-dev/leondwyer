@@ -366,11 +366,13 @@ footer {
     .hero { padding: 180px 0 200px 0; }
     .hero h1 { font-size: 2rem; }
     .hero-layer {
-        background-attachment: scroll;
+        background-attachment: scroll !important;
+        background-size: cover !important;
         background-position: center top;
     }
     .impact-strip, .field-collage {
-        background-attachment: scroll;
+        background-attachment: scroll !important;
+        background-size: cover !important;
         height: 200px;
         background-position: center top;
     }
