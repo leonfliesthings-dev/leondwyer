@@ -363,7 +363,17 @@ footer {
     .project-entry { grid-template-columns: 1fr; gap: 30px; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .timeline-item { grid-template-columns: 1fr; gap: 10px; }
+    .hero { padding: 180px 0 200px 0; }
     .hero h1 { font-size: 2rem; }
+    .hero-layer {
+        background-attachment: scroll;
+        background-position: center top;
+    }
+    .impact-strip, .field-collage {
+        background-attachment: scroll;
+        height: 200px;
+        background-position: center top;
+    }
     .stats-grid { grid-template-columns: 1fr 1fr; }
     .stack-grid { grid-template-columns: 1fr; }
     nav { padding: 15px 0; }
