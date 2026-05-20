@@ -370,11 +370,17 @@ footer {
         background-size: cover !important;
         background-position: center top;
     }
-    .impact-strip, .field-collage {
+    .impact-strip {
         background-attachment: scroll !important;
         background-size: cover !important;
         height: 200px;
         background-position: center top;
+    }
+    .field-collage {
+        background-attachment: scroll !important;
+        background-size: cover !important;
+        height: 200px;
+        background-position: center center;
     }
     .stats-grid { grid-template-columns: 1fr 1fr; }
     .stack-grid { grid-template-columns: 1fr; }
