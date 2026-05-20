@@ -337,8 +337,32 @@ footer {
     color: var(--text-dim);
 }
 
-@media (max-width: 768px) {
+.nav-linkedin {
+    color: var(--text-dim);
+    margin-left: 8px;
+    vertical-align: middle;
+    transition: color 0.3s;
+}
+
+.nav-linkedin:hover {
+    color: var(--accent);
+}
+
+.linkedin-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--text-dim);
+    transition: color 0.3s;
+}
+
+.linkedin-link:hover {
+    color: var(--accent);
+}
+
+@media (max-width: 640px) {
     .project-entry { grid-template-columns: 1fr; gap: 30px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .timeline-item { grid-template-columns: 1fr; gap: 10px; }
     .hero h1 { font-size: 2rem; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
     .stack-grid { grid-template-columns: 1fr; }
