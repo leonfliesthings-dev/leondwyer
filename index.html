@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leon Dwyer | Industrial UAS Solutions Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 150px;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        .about-text p {
+            margin-bottom: 20px;
+            font-weight: 300;
+            color: var(--text-dim);
+        }
+        .philosophy-card {
+            background: var(--card-bg);
+            padding: 0;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .philosophy-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+        .philosophy-quote {
+            padding: 30px;
+            border-left: 3px solid var(--accent);
+        }
+        .philosophy-quote h5 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .timeline {
+            margin-bottom: 150px;
+        }
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .timeline-date {
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+        }
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .timeline-content span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .timeline-content p {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Leon Dwyer</div>
+            <div class="nav-links">
+                <a href="#work">Deliveries</a>
+                <a href="#about">About</a>
+                <a href="#solutions">History</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-gallery">
+            <div class="hero-layer" style="background-image: url('images/546420342_10240318425322102_197689040924193426_n.jpg');"></div>
+            <div class="hero-layer" style="background-image: url('images/650707748_10243330520222592_7442812926087174396_n.jpg');"></div>
+            <div class="hero-layer" style="background-image: url('images/647037175_10243192096882095_6259795551759230623_n.jpg');"></div>
+            <div class="hero-layer" style="background-image: url('images/651012652_10243274845110749_1312324745071590588_n.jpg');"></div>
+            <!-- Specific alignment for drone formation image -->
+            <div class="hero-layer" style="background-image: url('images/650729361_10243310888691816_4382196991739851715_n.jpg'); background-position: top;"></div>
+            <div class="hero-layer" style="background-image: url('images/106538185_10224134722099636_1927191341115486342_n.jpg');"></div>
+        </div>
+        <div class="container">
+            <h1>Engineering <strong>Autonomous Systems</strong> for Industrial Infrastructure.</h1>
+            <p>A Solutions Engineer specializing in the architecture, deployment, and operational management of UAS fleets for the world’s leading energy and resource networks.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item"><h3>13Y+</h3><p>Innovation</p></div>
+            <div class="stat-item"><h3>1000H+</h3><p>Command</p></div>
+            <div class="stat-item"><h3>Tier 1</h3><p>Safety</p></div>
+            <div class="stat-item"><h3>BARS</h3><p>Accredited</p></div>
+        </div>
+    </div>
+
+    <main>
+        
+        <!-- About Section -->
+        <div class="container">
+            <span class="section-label" id="about">Engineering Philosophy</span>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Bridging Precision and <span style="color:var(--accent)">Visual Intelligence.</span></h2>
+                    <p>My career began in Multimedia and Graphic Design, a foundation that taught me how to distill complex information into intuitive, high-impact visuals. Over the last 13 years, I have pivoted this 'visual-first' mindset into the aerospace sector.</p>
+                    <p>I don't just see drones as hardware; I see them as data-acquisition solutions. Whether it's architecting a Many-to-Many GCS or navigating high-voltage networks in <strong>GPS-denied environments</strong>, my goal is to bridge the gap between raw engineering and actionable commercial intelligence using advanced <strong>IMU, LiDAR, and Multispectral</strong> sensor arrays.</p>
+                </div>
+                <div class="philosophy-card">
+                    <img src="images/106738002_10224134721219614_6117656556654175075_n.jpg" alt="Leon Dwyer - Industrial UAS Lead">
+                    <div class="philosophy-quote">
+                        <h5>The Mission</h5>
+                        <p style="font-style: italic; color: var(--text);">"I specialize in scaling autonomous systems within high-stakes, regulated environments. My work ensures that when a Tier-1 client like BHP or Woodside needs data, the delivery is safe, BARS-compliant, and technically flawless."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FULL WIDTH STRIP 1 -->
+        <div class="impact-strip" style="background-image: url('images/auav-wind-2-min.jpg');"></div>
+
+        <!-- Product & Deliveries -->
+        <div class="container">
+            <span class="section-label" id="onsite">Flagship Product Innovation</span>
+            <div class="project-list" style="margin-bottom: 80px;">
+                <div class="project-entry" style="grid-template-columns: 1.2fr 0.8fr;">
+                    <div class="project-details">
+                        <span class="client-meta">Flagship Project // Project Lead</span>
+                        <h4>AUAV onSite: "Drone in a Box"</h4>
+                        <p>Led the R&D and product delivery of <strong>onSite</strong>, a sophisticated service module for the DJI Doc 3. Engineered for remote and offshore environments, the system features a fully redundant power architecture (PV, Battery, Generator) and a failover data array (5G LTE, Satellite, Ethernet).</p>
+                        <p><strong>Impact:</strong> Successfully demonstrated and secured CASA acceptance for <strong>ROB BVLOS operations</strong> in November 2025, enabling fully autonomous remote deployments globally.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Project Lead</span>
+                            <span class="tech-tag">BVLOS Approval</span>
+                            <span class="tech-tag">Systems Integration</span>
+                            <span class="tech-tag">Remote Ops</span>
+                        </div>
+                    </div>
+                    <div class="project-visual" style="aspect-ratio: 1/1;">
+                        <img src="images/onSite-clean-color-bigger-drone-2-scaled.jpg" alt="AUAV onSite Drone in a Box">
+                    </div>
+                </div>
+            </div>
+
+            <span class="section-label" id="work">Case Studies & Deliveries</span>
+            <!-- PROJECT 1: MINING -->
+            <div class="project-entry">
+                <div class="project-visual">
+                    <img src="images/mining-action.jpg" alt="Mining Project - Elios Inspection">
+                </div>
+                <div class="project-details">
+                    <span class="client-meta">BHP // Rio Tinto</span>
+                    <h4>Mining & Resource Operations</h4>
+                    <p>Managed BARS-compliant data delivery for Tier-1 sites. Optimized survey workflows for volume reporting and complex subsidence monitoring across remote assets.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">BARS Compliance</span>
+                        <span class="tech-tag">LiDAR</span>
+                        <span class="tech-tag">Volume Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+                <div class="project-entry">
+                    <div class="project-details">
+                        <span class="client-meta">Woodside // Origin // Exxon</span>
+                        <h4>Oil, Gas & Energy Networks</h4>
+                        <p>Delivered high-fidelity 3D digital twins and critical stack inspections. Integrated thermal and RGB sensor data into actionable asset-health reports for global energy leaders.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Digital Twins</span>
+                            <span class="tech-tag">Thermal IR</span>
+                            <span class="tech-tag">Asset Inspection</span>
+                        </div>
+                    </div>
+                    <div class="project-visual">
+                        <img src="images/auav-wind-2-min.jpg" alt="Energy Infrastructure">
+                    </div>
+                </div>
+
+                <div class="project-entry">
+                    <div class="project-visual">
+                        <img src="images/auav-aerial-min-scaled.jpg" alt="Power Line Network">
+                    </div>
+                    <div class="project-details">
+                        <span class="client-meta">PowerCore // Grid Networks</span>
+                        <h4>Transmission & Utility Infrastructure</h4>
+                        <p>Spearheaded the deployment of the <strong>Insite SaaS platform</strong> for high-voltage network inspections. Provided utility managers with a centralized source of truth for transmission health.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Insite SaaS</span>
+                            <span class="tech-tag">HV Networks</span>
+                            <span class="tech-tag">Fleet Deployment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FULL WIDTH STRIP 2: Replaced with Dam Inspection shot -->
+        <div class="impact-strip" style="background-image: url('images/651012652_10243274845110749_1312324745071590588_n.jpg');"></div>
+
+        <!-- History Section -->
+        <div class="container">
+            <span class="section-label" id="solutions">Detailed Experience</span>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 — PRESENT</div>
+                    <div class="timeline-content">
+                        <h4>SafeSky Systems</h4>
+                        <span>Chief Remote Pilot & Solutions Architect</span>
+                        <p>Leading the development of Many-to-Many GCS solutions. Specialized in CFD airframe optimization and the integration of custom flight-stack firmware for autonomous clusters.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 — 2024</div>
+                    <div class="timeline-content">
+                        <h4>AUAV</h4>
+                        <span>Project Lead: onSite // Operations Manager</span>
+                        <p>Headed the R&D and rollout of the <strong>onSite</strong> Drone-in-a-Box solution. Managed the software-to-hardware integration and the regulatory pathway to CASA ROB BVLOS approval.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020 — 2021</div>
+                    <div class="timeline-content">
+                        <h4>National Drones</h4>
+                        <span>Solutions Consultant (Sales & Marketing)</span>
+                        <p>Technical consultant for marketing and sales agencies. Translated drone data capabilities into commercial visual assets.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2015 — 2020</div>
+                    <div class="timeline-content">
+                        <h4>AUAV</h4>
+                        <span>Senior R&D & Training Specialist</span>
+                        <p>Pioneered fixed-wing solutions and custom NIR MultiSpec payloads. Developed internal web-apps for GIS analysis.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2004 — 2013</div>
+                    <div class="timeline-content">
+                        <h4>Ascet Interactive</h4>
+                        <span>Art Director & Web Development</span>
+                        <p>The foundation of my career. Led visual strategy and web development for major regional projects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FULL WIDTH MISSION BANNER -->
+        <div class="field-collage" style="background-image: url('images/mining-action.jpg');"></div>
+
+        <!-- Tech Stack Section -->
+        <div class="container">
+            <div class="stack-grid">
+                <div class="stack-category">
+                    <h5>Flight & Control</h5>
+                    <ul>
+                        <li>MR, VTOL & Fixed-Wing (to 25kg)</li>
+                        <li>GPS-Denied & Confined Space Ops</li>
+                        <li>Many-to-Many GCS Architecture</li>
+                        <li>Ardupilot, PX4 & DJI Ecosystems</li>
+                    </ul>
+                </div>
+                <div class="stack-category">
+                    <h5>Software & Integration</h5>
+                    <ul>
+                        <li>SaaS Platform Deployment (Insite)</li>
+                        <li>Python, Node.js, SQL</li>
+                        <li>Flutter & C++ Development</li>
+                        <li>API & Sensor Integration</li>
+                    </ul>
+                </div>
+                <div class="stack-category">
+                    <h5>Visual & Sensor Intelligence</h5>
+                    <ul>
+                        <li>LiDAR, Multispectral & IMU Sensors</li>
+                        <li>3D Digital Twin Workflows</li>
+                        <li>Pix4D / RealityCapture</li>
+                        <li>QGIS / ESRI / Global Mapper</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>Leon Dwyer // 0423 720 477 // leonfliesthings@gmail.com</p>
+            <p style="margin-top: 15px; opacity: 0.4; font-weight: 200;">Ballarat, Victoria // Global Reach</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
