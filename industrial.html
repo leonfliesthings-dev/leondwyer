@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Inspection & Survey | Leon Dwyer</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .sector-hero {
+            padding: 180px 0 80px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 80px;
+        }
+        .sector-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .sector-hero h1 strong {
+            font-weight: 600;
+            color: var(--text);
+        }
+        .sector-hero p {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .sector-hero .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .sector-hero .back-link:hover {
+            color: var(--text);
+        }
+
+        .case-study-section {
+            margin-bottom: 100px;
+        }
+        .case-study-section h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .case-study-section .client-list {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .case-study-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .project-entry {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+        .project-entry.text-only {
+            grid-template-columns: 1fr;
+            max-width: 100%;
+        }
+
+        .sub-projects {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .sub-projects h5 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .sub-project-item {
+            margin-bottom: 15px;
+        }
+        .sub-project-item h6 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .sub-project-item p {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            margin-bottom: 0;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin: 20px 0 80px 0;
+        }
+
+        @media (max-width: 640px) {
+            .sector-hero { padding: 140px 0 60px 0; }
+            .sector-hero h1 { font-size: 2rem; }
+            .project-entry { grid-template-columns: 1fr !important; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none;">Leon Dwyer</a> <a href="https://www.linkedin.com/in/leon-dwyer-0a860815a/" target="_blank" rel="noopener noreferrer" class="nav-linkedin" aria-label="LinkedIn Profile"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a></div>
+            <div class="nav-links">
+                <a href="index.html#sectors">Sectors</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#solutions">History</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="sector-hero">
+        <div class="container">
+            <a href="index.html#sectors" class="back-link">&larr; All Sectors</a>
+            <h1><strong>Industrial Inspection</strong> & Survey</h1>
+            <p>Tier-1 delivery across mining, oil and gas, energy, transmission, and waste management. BARS-compliant data acquisition, 3D digital twins, confined space operations, and large-scale survey programs.</p>
+        </div>
+    </header>
+
+    <div class="impact-strip" style="background-image: url('images/mining-action.jpg');"></div>
+
+    <main>
+
+        <!-- Mining & Resources -->
+        <div class="container">
+            <div class="case-study-section">
+                <span class="section-label">01 -- Mining & Resources</span>
+                <h2>Volume Reporting & Subsidence Monitoring</h2>
+                <span class="client-list">BHP // Rio Tinto</span>
+
+                <div class="case-study-grid">
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/RnD/Large-area-mapping.jpeg" alt="Fixed-wing survey operations" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>BARS-Compliant Data Delivery</h4>
+                            <span class="client-meta">BHP & Rio Tinto -- Ongoing Programs</span>
+                            <p>End-to-end aerial survey programs for Australia's largest mining operations. Deliverables include volumetric stockpile reports, subsidence monitoring datasets, and high-resolution orthomosaics used for mine planning and compliance reporting.</p>
+                            <p>LiDAR and fixed-wing survey methodologies deployed across expansive open-cut and underground operations. All programs designed to meet BARS (Basic Aviation Risk Standard) requirements for airside operations on active mine sites.</p>
+                            <div class="tech-tags" style="clear: both;">
+                                <span class="tech-tag">ArduPilot Fixed-Wing 7kg</span>
+                                <span class="tech-tag">RTK VRS</span>
+                                <span class="tech-tag">LiDAR</span>
+                                <span class="tech-tag">Pix4D</span>
+                                <span class="tech-tag">Global Mapper</span>
+                                <span class="tech-tag">BARS Accredited</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Oil, Gas & Energy -->
+        <div class="container">
+            <div class="case-study-section">
+                <span class="section-label">02 -- Oil, Gas & Energy</span>
+                <h2>Digital Twins & Asset Integrity</h2>
+                <span class="client-list">Woodside // Origin // Exxon // INPEX // Oceaneering // AECOM</span>
+
+                <div class="case-study-grid">
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/industrial/oil-gas.jpg" alt="Active flare stack inspection from drone" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>3D Digital Twins & Flare Stack Inspections</h4>
+                            <span class="client-meta">Woodside, Origin, INPEX -- Asset Integrity Programs</span>
+                            <p>Creation of high-fidelity 3D digital twins for refinery and processing facility assets. Active flare stack inspections conducted on live stacks using thermal and RGB sensor payloads, delivering asset-health condition reports that inform maintenance planning and shutdown scheduling.</p>
+                            <p>INPEX Northern Territory facility modelling delivered comprehensive as-built 3D datasets for operational planning and regulatory compliance.</p>
+                            <div class="tech-tags" style="clear: both;">
+                                <span class="tech-tag">Thermal / RGB</span>
+                                <span class="tech-tag">3D Digital Twin</span>
+                                <span class="tech-tag">Pix4D</span>
+                                <span class="tech-tag">RealityCapture</span>
+                                <span class="tech-tag">Asset Health Reporting</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/industrial/IMG-0974.jpeg" alt="Confined space underground inspection" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>Confined Space & Decommissioning</h4>
+                            <span class="client-meta">Exxon, Woodside, AGL -- Specialist Operations</span>
+                            <p>GPS-denied confined space inspections using Flyability Elios 2 and ScoutDI platforms inside pressure vessels, boilers, and storage tanks. These inspections replace human entry requirements, dramatically reducing risk in hazardous environments.</p>
+                            <p>Refinery decommissioning surveys provide 3D baseline models and progress monitoring datasets for demolition management teams.</p>
+                            <div class="tech-tags" style="clear: both;">
+                                <span class="tech-tag">Elios 2</span>
+                                <span class="tech-tag">ScoutDI</span>
+                                <span class="tech-tag">GPS-Denied</span>
+                                <span class="tech-tag">Confined Space</span>
+                            </div>
+
+                            <div class="sub-projects">
+                                <h5>Key Projects</h5>
+                                <div class="sub-project-item">
+                                    <h6>Oceaneering -- Longford Flare Stack</h6>
+                                    <p>Active flare stack inspection at the Longford gas processing facility, delivering thermal and visual condition reports for integrity assessment.</p>
+                                </div>
+                                <div class="sub-project-item">
+                                    <h6>Exxon -- Altona Refinery Demolition</h6>
+                                    <p>Progressive 3D survey and monitoring of the Altona refinery demolition, providing volumetric change detection and site compliance documentation.</p>
+                                </div>
+                                <div class="sub-project-item">
+                                    <h6>AECOM -- Snowy Hydro Talbingo Dam</h6>
+                                    <p>High-resolution 3D model of the Talbingo Dam structure for AECOM's engineering assessment and asset management records.</p>
+                                </div>
+                                <div class="sub-project-item">
+                                    <h6>AECOM / Little Creatures Brewery -- Heritage Building & Chimney Inspection</h6>
+                                    <p>External and internal chimney inspections plus building and roof assessment of the historic 1920s Valley Worsted Mill in Geelong. Detailed 3D model created in a single 4-hour capture, identifying cracking, damaged bricks, loose metalwork, and repainting requirements — eliminating the need for elevated work platforms.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Solar & Wind -->
+        <div class="container">
+            <div class="case-study-section">
+                <span class="section-label">03 -- Solar & Wind</span>
+                <h2>Renewable Energy Asset Surveys</h2>
+                <span class="client-list">LightSource BP // Goldwind // AGL</span>
+
+                <div class="case-study-grid">
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/industrial/DJI_0999_R.jpg" alt="Thermal solar panel inspection" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>Large-Scale Solar Farm Mapping</h4>
+                            <span class="client-meta">LightSource BP -- Sandy Creek & Merriwa</span>
+                            <p>Aerial survey and mapping programs for two 4,000-hectare solar development sites. Fixed-wing and multirotor platforms deployed for topographic survey, vegetation mapping, and construction progress monitoring across the Sandy Creek and Merriwa projects.</p>
+                            <div class="tech-tags" style="clear: both;">
+                                <span class="tech-tag">Fixed-Wing Survey</span>
+                                <span class="tech-tag">4000ha Coverage</span>
+                                <span class="tech-tag">Pix4D</span>
+                                <span class="tech-tag">Topographic Mapping</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/auav-wind-2-min.jpg" alt="Wind turbine blade inspection team on site" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>Wind Turbine Blade Inspections</h4>
+                            <span class="client-meta">Goldwind (GE) -- Ararat Wind Farm</span>
+                            <p>Systematic blade inspections across 74 GE wind turbines at the Ararat Wind Farm. High-resolution RGB capture of each blade face, delivering defect identification reports covering leading-edge erosion, lightning strike damage, and structural cracking.</p>
+                            <div class="tech-tags" style="clear: both;">
+                                <span class="tech-tag">74 Turbines</span>
+                                <span class="tech-tag">Blade Inspection</span>
+                                <span class="tech-tag">High-Res RGB</span>
+                                <span class="tech-tag">Defect Reporting</span>
+                            </div>
+
+                            <div class="sub-projects">
+                                <h5>Additional AGL Projects</h5>
+                                <div class="sub-project-item">
+                                    <h6>AGL Silverton -- 220KV Transmission Line Survey</h6>
+                                    <p>Aerial survey of the 220KV transmission line corridor, capturing conductor condition, vegetation encroachment, and tower structure data.</p>
+                                </div>
+                                <div class="sub-project-item">
+                                    <h6>AGL Yallourn & Loy Yang -- Shutdown Inspections</h6>
+                                    <p>Confined space inspections during scheduled shutdowns at the Yallourn and Loy Yang power stations, using Elios 2 for boiler and turbine hall assessments.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Transmission & Utility -->
+        <div class="container">
+            <div class="case-study-section">
+                <span class="section-label">04 -- Transmission & Utility</span>
+                <h2>HV Network Inspection Platform</h2>
+                <span class="client-list">PowerCor // Grid Networks</span>
+
+                <div class="case-study-grid">
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/industrial/Elecnor.jpg" alt="HV transmission line drone inspection" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>Insite SaaS Platform Deployment</h4>
+                            <span class="client-meta">PowerCor & Grid Networks -- Ongoing</span>
+                            <p>Deployment and operation of the Insite SaaS platform for high-voltage network inspections. Fleet-scale drone operations across transmission and distribution assets, delivering automated defect detection and asset condition reporting through a centralized web platform.</p>
+                            <p>Multi-pilot fleet deployment across regional transmission corridors, with standardized capture workflows feeding directly into the Insite analysis pipeline for utility asset management teams.</p>
+                            <div class="tech-tags" style="clear: both;">
+                                <span class="tech-tag">Insite SaaS</span>
+                                <span class="tech-tag">HV Network</span>
+                                <span class="tech-tag">Fleet Deployment</span>
+                                <span class="tech-tag">Automated Defect Detection</span>
+                                <span class="tech-tag">Transmission Assets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Landfill & Quarries -->
+        <div class="container">
+            <div class="case-study-section">
+                <span class="section-label">05 -- Landfill & Quarries</span>
+                <h2>Quarterly Volumetrics & Monitoring</h2>
+                <span class="client-list">Cleanaway // Hi-Quality</span>
+
+                <div class="case-study-grid">
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/industrial/volumes.jpg" alt="Quarterly volumetric survey with contour overlay" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>Ongoing Volume Reporting Programs</h4>
+                            <span class="client-meta">Cleanaway & Hi-Quality -- Since 2017</span>
+                            <p>Quarterly aerial survey programs delivering volumetric stockpile and void-space calculations for landfill operations and quarry sites. These long-running programs provide consistent, auditable datasets used for EPA compliance, operational planning, and financial reporting.</p>
+                            <p>Subsidence monitoring programs track ground movement across capped landfill cells and active fill areas. MatterPort 3D capture deployed for indoor facility inspections and equipment condition assessments.</p>
+                            <div class="tech-tags" style="clear: both;">
+                                <span class="tech-tag">Quarterly Surveys</span>
+                                <span class="tech-tag">Volume Reporting</span>
+                                <span class="tech-tag">Subsidence Monitoring</span>
+                                <span class="tech-tag">MatterPort</span>
+                                <span class="tech-tag">Pix4D</span>
+                                <span class="tech-tag">Global Mapper</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>Leon Dwyer // 0423 720 477 // leonfliesthings@gmail.com</p>
+            <p style="margin-top: 15px; opacity: 0.4; font-weight: 200;">Ballarat, Victoria // Global Reach</p>
+            <a href="https://www.linkedin.com/in/leon-dwyer-0a860815a/" target="_blank" rel="noopener noreferrer" class="linkedin-link" aria-label="LinkedIn Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

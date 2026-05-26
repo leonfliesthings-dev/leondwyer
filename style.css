@@ -145,8 +145,48 @@ nav {
     font-size: 1.1rem;
     color: var(--text-dim);
     max-width: 550px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     font-weight: 300;
+}
+
+/* Hero sector navigation bar */
+.hero-sector-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 12, 16, 0.75);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    z-index: 1;
+}
+
+.hero-sector-bar .container {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+}
+
+.hero-sector-bar a {
+    flex: 1;
+    text-align: center;
+    padding: 18px 10px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s, background 0.3s;
+    border-right: 1px solid var(--border);
+}
+
+.hero-sector-bar a:last-child {
+    border-right: none;
+}
+
+.hero-sector-bar a:hover {
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.05);
 }
 
 /* Precise Stats Section */
@@ -386,4 +426,306 @@ footer {
     .stack-grid { grid-template-columns: 1fr; }
     nav { padding: 15px 0; }
     .nav-links { display: none; }
+}
+
+/* ===== PRINT STYLES — Professional PDF Output ===== */
+@media print {
+
+    /* --- Reset theme to white --- */
+    :root {
+        --bg: #ffffff;
+        --card-bg: #ffffff;
+        --primary: #334155;
+        --accent: #0369a1;
+        --text: #0f172a;
+        --text-dim: #475569;
+        --border: #e2e8f0;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    body {
+        background: #fff;
+        color: #0f172a;
+        font-size: 10pt;
+        line-height: 1.5;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    /* --- Hide interactive / web-only elements --- */
+    nav,
+    .hero-gallery,
+    .hero::after,
+    .impact-strip,
+    .field-collage,
+    .nav-linkedin,
+    .linkedin-link {
+        display: none !important;
+    }
+
+    /* --- Hero: clean header block --- */
+    .hero {
+        position: relative;
+        padding: 0;
+        margin-bottom: 24pt;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 20pt;
+        overflow: visible;
+    }
+
+    .hero h1 {
+        font-size: 22pt;
+        font-weight: 300;
+        line-height: 1.2;
+        margin-bottom: 8pt;
+        color: #0f172a;
+    }
+
+    .hero strong {
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .hero p {
+        font-size: 10pt;
+        color: var(--text-dim);
+        margin-bottom: 0;
+    }
+
+    /* --- Stats: inline row --- */
+    .stats-grid {
+        display: flex;
+        gap: 0;
+        border: 1px solid var(--border);
+        margin-bottom: 28pt;
+        background: none;
+    }
+
+    .stat-item {
+        flex: 1;
+        padding: 10pt 8pt;
+        text-align: center;
+        background: #f8fafc;
+        border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child {
+        border-right: none;
+    }
+
+    .stat-item h3 {
+        font-size: 11pt;
+        color: var(--accent);
+    }
+
+    .stat-item p {
+        font-size: 6pt;
+    }
+
+    /* --- Section labels --- */
+    .section-label {
+        font-size: 7pt;
+        letter-spacing: 2pt;
+        color: var(--accent);
+        margin-bottom: 10pt;
+        border-bottom: none;
+    }
+
+    /* --- About section --- */
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30pt;
+        margin-bottom: 28pt;
+    }
+
+    .about-text h2 {
+        font-size: 14pt;
+        margin-bottom: 10pt;
+    }
+
+    .about-text p {
+        font-size: 9pt;
+        margin-bottom: 8pt;
+    }
+
+    .philosophy-card {
+        border: 1px solid var(--border);
+        break-inside: avoid;
+    }
+
+    .philosophy-card img {
+        height: 160pt;
+        opacity: 1;
+    }
+
+    .philosophy-quote {
+        padding: 12pt;
+        border-left: 3px solid var(--accent);
+    }
+
+    .philosophy-quote h5 {
+        font-size: 6pt;
+        color: var(--accent);
+        margin-bottom: 6pt;
+    }
+
+    .philosophy-quote p {
+        font-size: 8.5pt;
+        color: var(--text) !important;
+    }
+
+    /* --- Projects / Case Studies --- */
+    .project-list {
+        gap: 28pt;
+        margin-bottom: 28pt;
+    }
+
+    .project-entry {
+        gap: 24pt;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .project-visual {
+        border: 1px solid var(--border);
+        background: #f1f5f9;
+    }
+
+    .project-visual img {
+        opacity: 1;
+    }
+
+    .project-details h4 {
+        font-size: 12pt;
+        margin-bottom: 6pt;
+    }
+
+    .project-details p {
+        font-size: 9pt;
+        margin-bottom: 10pt;
+    }
+
+    .client-meta {
+        font-size: 6.5pt;
+        margin-bottom: 8pt;
+    }
+
+    .tech-tags {
+        gap: 4pt;
+    }
+
+    .tech-tag {
+        font-size: 5.5pt;
+        padding: 2pt 6pt;
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+        background: #f8fafc;
+    }
+
+    /* --- Timeline / Experience --- */
+    .timeline {
+        margin-bottom: 28pt;
+    }
+
+    .timeline-item {
+        grid-template-columns: 100pt 1fr;
+        gap: 16pt;
+        padding: 12pt 0;
+        border-bottom: 1px solid var(--border);
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .timeline-date {
+        font-size: 7.5pt;
+        color: var(--accent);
+    }
+
+    .timeline-content h4 {
+        font-size: 10pt;
+        margin-bottom: 2pt;
+    }
+
+    .timeline-content span {
+        font-size: 7pt;
+        margin-bottom: 4pt;
+    }
+
+    .timeline-content p {
+        font-size: 8.5pt;
+    }
+
+    /* --- Tech Stack --- */
+    .stack-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20pt;
+        padding: 16pt 0;
+        border-top: 1px solid var(--border);
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .stack-category h5 {
+        font-size: 7pt;
+        margin-bottom: 8pt;
+    }
+
+    .stack-category li {
+        font-size: 8pt;
+        margin-bottom: 3pt;
+    }
+
+    /* --- Footer: simple contact line --- */
+    footer {
+        padding: 16pt 0;
+        border-top: 2px solid var(--accent);
+        font-size: 8pt;
+        text-align: center;
+    }
+
+    /* --- Page setup --- */
+    @page {
+        size: A4;
+        margin: 18mm 20mm;
+    }
+
+    /* --- Global page-break hints --- */
+    h2, h4, .section-label {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+
+    /* --- Show LinkedIn URL as text in print --- */
+    footer .linkedin-link {
+        display: inline !important;
+        color: var(--accent);
+        font-size: 8pt;
+        text-decoration: none;
+    }
+
+    footer .linkedin-link svg {
+        display: none;
+    }
+
+    footer .linkedin-link::after {
+        content: "linkedin.com/in/leon-dwyer-0a860815a";
+    }
+
+    /* --- Remove scroll-triggered animations --- */
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environment & Land Management | Leon Dwyer</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .sector-hero {
+            position: relative;
+            padding: 180px 0 80px 0;
+            border-bottom: none;
+            margin-bottom: 80px;
+            background-image: url('images/650707748_10243330520222592_7442812926087174396_n.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .sector-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(10, 12, 16, 0.5), rgba(10, 12, 16, 0.85));
+        }
+        .sector-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .sector-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .sector-hero h1 strong {
+            font-weight: 600;
+            color: var(--text);
+        }
+        .sector-hero p {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .sector-hero .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .sector-hero .back-link:hover {
+            color: var(--text);
+        }
+
+        .case-study-section {
+            margin-bottom: 100px;
+        }
+        .case-study-section h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .case-study-section .client-list {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .case-study-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .project-entry {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+        .project-entry.text-only {
+            grid-template-columns: 1fr;
+            max-width: 100%;
+        }
+
+        .sub-projects {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .sub-projects h5 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .sub-project-item {
+            margin-bottom: 15px;
+        }
+        .sub-project-item h6 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .sub-project-item p {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            margin-bottom: 0;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin: 20px 0 80px 0;
+        }
+
+        @media (max-width: 640px) {
+            .sector-hero { padding: 140px 0 60px 0; }
+            .sector-hero h1 { font-size: 2rem; }
+            .project-entry { grid-template-columns: 1fr !important; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none;">Leon Dwyer</a> <a href="https://www.linkedin.com/in/leon-dwyer-0a860815a/" target="_blank" rel="noopener noreferrer" class="nav-linkedin" aria-label="LinkedIn Profile"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a></div>
+            <div class="nav-links">
+                <a href="index.html#sectors">Sectors</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#solutions">History</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="sector-hero">
+        <div class="container">
+            <a href="index.html#sectors" class="back-link">&larr; All Sectors</a>
+            <h1><strong>Environment</strong> & Land Management</h1>
+            <p>Wetland ecology surveys, AI-driven weed detection, plantation forestry analysis, and road construction monitoring. Multispectral, NDVI, and custom ArduPilot platforms delivering actionable environmental intelligence across regional Victoria and beyond.</p>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Brolga Wetlands -->
+        <div class="container">
+            <div class="case-study-section">
+                <span class="section-label">01 -- Wetland Ecology</span>
+                <h2>Western Victoria Wetlands -- Brolga Impact Surveys</h2>
+                <span class="client-list">EH Partners</span>
+
+                <div class="case-study-grid">
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/environment/Anna-Every-Brolga1.jpg" alt="Brolga in habitat" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>Habitat & Brolga Nesting Site Monitoring</h4>
+                            <span class="client-meta">EH Partners -- Ongoing Annual Program</span>
+                            <p>Managed project services conducting habitat and Brolga nesting site monitoring for EHP. Each year surveyed over 1,500 wetlands across the Victorian Western District for windfarm impact assessment, delivering comprehensive ecological datasets to inform development approvals and conservation management.</p>
+                            <p>Geotagged video capture across all survey sites with online digital twin delivery, providing clients and stakeholders with a spatially accurate, repeatable monitoring record across seasons.</p>
+                            <div class="tech-tags" style="clear: both;">
+                                <span class="tech-tag">DJI Mavic 3</span>
+                                <span class="tech-tag">Geotagged Video</span>
+                                <span class="tech-tag">1,500+ Wetlands</span>
+                                <span class="tech-tag">Digital Twin Delivery</span>
+                                <span class="tech-tag">Windfarm Impact Assessment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Italian Buckthorn AI Detection -->
+        <div class="container">
+            <div class="case-study-section">
+                <span class="section-label">02 -- Invasive Species</span>
+                <h2>Italian Buckthorn AI Detection & Prescriptive Spray Control</h2>
+                <span class="client-list">GHCMA -- Glenelg Hopkins Catchment Management Authority</span>
+
+                <div class="case-study-grid">
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <div style="width: 100%; margin-bottom: 20px; border: 1px solid var(--border); overflow: hidden;">
+                                <img src="images/environment/Case-Study-Website-Banner (1).jpg" alt="AI species detection and prescriptive spray mapping" style="width: 100%; display: block; opacity: 0.85;">
+                            </div>
+                            <h4>AI Species Detection & Prescriptive Spray Control</h4>
+                            <span class="client-meta">GHCMA in collaboration with Australis Biological</span>
+                            <p>Italian Buckthorn (<em>Rhamnus alaternus</em>) has invaded southeastern Australia's coastline, but closely resembles native vegetation — making ground-based identification risky and difficult. Personnel couldn't safely access infested terrain on foot, and conventional herbicide application risked harming non-target native plants.</p>
+                            <p>I led the end-to-end drone workflow: captured detailed ground-truth documentation of target and non-target species, then collected multispectral data across five light spectrums (RGB, NIR, Red Edge, Green, Blue) using a DJI Mavic 3 Multispectral. Multiple ground sampling densities were tested to balance accuracy and cost-effectiveness, generating up to 10 distinct analytical outputs per dataset.</p>
+                            <p>The validated detection data was then converted into prescriptive spray flight plans for a <strong>DJI AGRAS T50</strong> precision spraying drone — enabling targeted herbicide application to individual plants and clusters without impacting surrounding native habitat.</p>
+                            <p style="margin-top: 15px;"><strong>Detection accuracy: Italian Buckthorn 97% // Slashed Juvenile Gorse 85% // Cape Wattle 100%</strong></p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">DJI Mavic 3 Multispectral</span>
+                                <span class="tech-tag">DJI AGRAS T50</span>
+                                <span class="tech-tag">AI Species Detection</span>
+                                <span class="tech-tag">NIR / Red Edge / NDVI</span>
+                                <span class="tech-tag">Prescriptive Spray Mapping</span>
+                                <span class="tech-tag">Pix4D Fields</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Forestry -->
+        <div class="container">
+            <div class="case-study-section">
+                <span class="section-label">03 -- Forestry</span>
+                <h2>Survival, Stem Count, Biomass & Carbon</h2>
+                <span class="client-list">One Forty One // HVP // ABG // Green Triangle</span>
+
+                <div class="case-study-grid">
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/RnD/forestmapper.jpg" alt="ForestMapper fixed-wing launch" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>Plantation Forestry Analysis Platform</h4>
+                            <span class="client-meta">One Forty One, HVP, ABG, Green Triangle -- Production Programs</span>
+                            <p>Survival and stem count analysis, biomass estimation, and carbon accounting across plantation forestry operations. Fixed-wing and multirotor surveys deployed with multispectral and NDVI analysis to assess tree health, stocking rates, and growth performance across large-scale forestry estates.</p>
+                            <p>Built and operated a custom ArduPilot ForestMapper platform, accumulating over 1,000 hours of production flight time. This purpose-built fixed-wing system was designed specifically for the demands of forestry survey -- long endurance, consistent altitude hold, and reliable multispectral payload integration over dense canopy environments.</p>
+                            <div class="tech-tags" style="clear: both;">
+                                <span class="tech-tag">Custom ArduPilot ForestMapper</span>
+                                <span class="tech-tag">1,000+ Flight Hours</span>
+                                <span class="tech-tag">Fixed-Wing</span>
+                                <span class="tech-tag">Multirotor</span>
+                                <span class="tech-tag">Multispectral / NDVI</span>
+                                <span class="tech-tag">Biomass & Carbon</span>
+                                <span class="tech-tag">Stem Count</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Road & Construction Monitoring -->
+        <div class="container">
+            <div class="case-study-section">
+                <span class="section-label">04 -- Road & Construction</span>
+                <h2>Road & Construction Monitoring</h2>
+                <span class="client-list">Geovert // John Holland // VicRoads // Regional Roads Victoria</span>
+
+                <div class="case-study-grid">
+                    <div class="project-entry text-only" style="display: block;">
+                        <div class="project-details">
+                            <img src="images/environment/auav-environment-landslip-min.gif" alt="Road landslip 3D survey" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                            <h4>Infrastructure Survey & Progress Monitoring</h4>
+                            <span class="client-meta">Multiple Clients -- Regional Victoria</span>
+                            <p>Comprehensive road and construction monitoring programs across regional Victoria, delivering 3D as-built models, geolocated footage, progress inspections, and traffic monitoring datasets for state and local government clients.</p>
+
+                            <div class="sub-projects">
+                                <h5>Key Projects</h5>
+                                <div class="sub-project-item">
+                                    <h6>Great Ocean Road Stability Works -- Geovert</h6>
+                                    <p>10mm GSD 3D as-built survey of slope stability works along the Great Ocean Road, providing high-fidelity models for engineering validation and compliance reporting.</p>
+                                </div>
+                                <div class="sub-project-item">
+                                    <h6>Barwon Prison Dilapidation Survey</h6>
+                                    <p>Aerial dilapidation survey capturing building condition data across the Barwon Prison facility for maintenance planning and asset management.</p>
+                                </div>
+                                <div class="sub-project-item">
+                                    <h6>Harrietville to Mt Hotham -- VicRoads</h6>
+                                    <p>Geolocated footage capture along the Harrietville to Mt Hotham road corridor for condition assessment and planning documentation.</p>
+                                </div>
+                                <div class="sub-project-item">
+                                    <h6>Goulburn Valley Highway -- Regional Roads Victoria</h6>
+                                    <p>Construction progress inspections for highway upgrade works, providing regular aerial monitoring and volumetric reporting.</p>
+                                </div>
+                                <div class="sub-project-item">
+                                    <h6>Lake Entrance Traffic Monitoring (2019--2021)</h6>
+                                    <p>Multi-year traffic monitoring program using aerial observation to capture vehicle flow data, congestion patterns, and seasonal traffic variations for transport planning.</p>
+                                </div>
+                            </div>
+
+                            <div class="tech-tags">
+                                <span class="tech-tag">10mm GSD</span>
+                                <span class="tech-tag">3D As-Built</span>
+                                <span class="tech-tag">Geolocated Footage</span>
+                                <span class="tech-tag">Progress Monitoring</span>
+                                <span class="tech-tag">Traffic Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>Leon Dwyer // 0423 720 477 // leonfliesthings@gmail.com</p>
+            <p style="margin-top: 15px; opacity: 0.4; font-weight: 200;">Ballarat, Victoria // Global Reach</p>
+            <a href="https://www.linkedin.com/in/leon-dwyer-0a860815a/" target="_blank" rel="noopener noreferrer" class="linkedin-link" aria-label="LinkedIn Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

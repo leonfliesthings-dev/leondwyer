@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leon Dwyer | Industrial UAS Solutions Engineer</title>
+    <title>Leon Dwyer | UAS Solutions Architect</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,6 +86,87 @@
             color: var(--text-dim);
         }
 
+        /* Sector cards */
+        .sectors {
+            margin-bottom: 150px;
+        }
+        .sectors-heading {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 50px;
+        }
+        .sector-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .sector-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 35px;
+            transition: border-color 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .sector-card:hover {
+            border-color: var(--accent);
+        }
+        .sector-card .sector-number {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: block;
+        }
+        .sector-card h4 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .sector-card p {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .sector-card .sector-link {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+        .sector-card:hover .sector-link {
+            text-decoration: underline;
+        }
+        /* Feature card spans full width */
+        .sector-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .sector-card.featured .sector-text {}
+        .sector-card.featured .sector-image {
+            height: 200px;
+            background: #111;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .sector-card.featured .sector-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: opacity 0.5s;
+        }
+        .sector-card.featured:hover .sector-image img {
+            opacity: 0.8;
+        }
+
         @media (max-width: 640px) {
             .about-grid {
                 grid-template-columns: 1fr;
@@ -98,6 +179,12 @@
             .project-entry {
                 grid-template-columns: 1fr !important;
             }
+            .sector-grid {
+                grid-template-columns: 1fr;
+            }
+            .sector-card.featured {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -105,9 +192,9 @@
 
     <nav>
         <div class="nav-container">
-            <div class="logo">Leon Dwyer <a href="https://www.linkedin.com/in/leon-dwyer-0a860815a/" target="_blank" rel="noopener noreferrer" class="nav-linkedin" aria-label="LinkedIn Profile"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a></div>
+            <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none;">Leon Dwyer</a> <a href="https://www.linkedin.com/in/leon-dwyer-0a860815a/" target="_blank" rel="noopener noreferrer" class="nav-linkedin" aria-label="LinkedIn Profile"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a></div>
             <div class="nav-links">
-                <a href="#work">Deliveries</a>
+                <a href="#sectors">Sectors</a>
                 <a href="#about">About</a>
                 <a href="#solutions">History</a>
                 <a href="#contact">Contact</a>
@@ -126,15 +213,24 @@
             <div class="hero-layer" style="background-image: url('images/106538185_10224134722099636_1927191341115486342_n.jpg');"></div>
         </div>
         <div class="container">
-            <h1>Engineering <strong>Autonomous UAV Systems</strong> for Industrial Infrastructure.</h1>
-            <p>A Solutions Engineer specializing in the architecture, deployment, and operational management of UAS fleets for the world’s leading energy and resource networks.</p>
+            <h1>Engineering <strong>Autonomous UAV Systems</strong> Across Every Domain.</h1>
+            <p>A Solutions Architect and Chief Remote Pilot with 13+ years across R&D, operations, emergency response, industrial inspection, and environmental monitoring.</p>
+        </div>
+        <div class="hero-sector-bar">
+            <div class="container">
+                <a href="rnd.html">R&D</a>
+                <a href="operations.html">Operations</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="industrial.html">Industrial</a>
+                <a href="environment.html">Environmental</a>
+            </div>
         </div>
     </header>
 
     <div class="container">
         <div class="stats-grid">
             <div class="stat-item"><h3>13Y+</h3><p>Innovation</p></div>
-            <div class="stat-item"><h3>1000H+</h3><p>Command</p></div>
+            <div class="stat-item"><h3>6800H+</h3><p>Command</p></div>
             <div class="stat-item"><h3>Tier 1</h3><p>Safety</p></div>
             <div class="stat-item"><h3>BARS</h3><p>Accredited</p></div>
         </div>
@@ -162,89 +258,63 @@
             </div>
         </div>
 
-        <!-- FULL WIDTH STRIP 1 -->
+        <!-- FULL WIDTH STRIP -->
         <div class="impact-strip" style="background-image: url('images/auav-wind-2-min.jpg');"></div>
 
-        <!-- Product & Deliveries -->
+        <!-- Sector Cards -->
         <div class="container">
-           
-            <div class="project-list" style="margin-bottom: 80px;">
-                <div class="project-entry" style="grid-template-columns: 1.2fr 0.8fr;">
-                    <div class="project-details">
-                        <span class="section-label" id="onsite">Flagship Product Innovation</span>
-                        <h4>AUAV onSite: "Drone in a Box"</h4>
-                        <p>Led the CASA certification, safety assessment, operational testing, and field deployment of <strong>onSite</strong>, a sophisticated service module for the DJI Dock 3. Developed the full operational workflow for remote and offshore environments, leveraging its redundant power architecture (PV, Battery, Generator) and failover data array (5G LTE, Satellite, Ethernet).</p>
-                        <p><strong>Impact:</strong> Successfully demonstrated and secured CASA acceptance for <strong>ROB BVLOS operations</strong> in November 2025, enabling fully autonomous remote deployments globally.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">CASA Certification</span>
-                            <span class="tech-tag">BVLOS Approval</span>
-                            <span class="tech-tag">Systems Integration</span>
-                            <span class="tech-tag">Remote Base Design</span>
-                            <span class="tech-tag">Safety Assessment</span>
-                            <span class="tech-tag">Deployment & Testing</span>
-                        </div>
-                    </div>
-                    <div class="project-visual" style="aspect-ratio: 1/1;">
-                        <img src="images/onSite-clean-color-bigger-drone-2-scaled.jpg" alt="AUAV onSite Drone in a Box">
-                    </div>
-                </div>
-            </div>
+            <div class="sectors" id="sectors">
+                <span class="section-label">Capabilities & Sectors</span>
+                <h2 class="sectors-heading">13 years across <span style="color:var(--accent)">five domains.</span></h2>
 
-            <span class="section-label" id="work">Case Studies & Deliveries</span>
-            <div class="project-list">
-                <!-- PROJECT 1: MINING -->
-                <div class="project-entry">
-                    <div class="project-visual">
-                        <img src="images/mining-action.jpg" alt="Mining Project - Elios Inspection">
-                    </div>
-                    <div class="project-details">
-                        <span class="client-meta">BHP // Rio Tinto</span>
-                        <h4>Mining & Resource Operations</h4>
-                        <p>Managed BARS-compliant data delivery for Tier-1 sites. Optimized survey workflows for volume reporting and complex subsidence monitoring across remote assets.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">BARS Compliance</span>
-                            <span class="tech-tag">LiDAR</span>
-                            <span class="tech-tag">Volume Analysis</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="sector-grid">
 
-                <div class="project-entry">
-                    <div class="project-details">
-                        <span class="client-meta">Woodside // Origin // Exxon</span>
-                        <h4>Oil, Gas & Energy Networks</h4>
-                        <p>Delivered high-fidelity 3D digital twins and critical stack inspections. Integrated thermal and RGB sensor data into actionable asset-health reports for global energy leaders.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Digital Twins</span>
-                            <span class="tech-tag">Thermal IR</span>
-                            <span class="tech-tag">Asset Inspection</span>
+                    <a href="rnd.html" class="sector-card featured">
+                        <div class="sector-text">
+                            <span class="sector-number">01 — R&D</span>
+                            <h4>R&D & Systems Engineering</h4>
+                            <p>VTRX VTOL airframe development, Balliyang synthetic LiDAR, custom GCS from scratch, ArduPilot Lua scripting, CFD pipeline automation, and open-source contributions to ArduPilot and QGroundControl.</p>
+                            <span class="sector-link">View Projects &rarr;</span>
                         </div>
-                    </div>
-                    <div class="project-visual">
-                        <img src="images/auav-wind-2-min.jpg" alt="Energy Infrastructure">
-                    </div>
-                </div>
+                        <div class="sector-image">
+                            <img src="images/RnD/WhatsApp Image 2026-04-21 at 14.01.02.jpeg" alt="VTRX VTOL in flight">
+                        </div>
+                    </a>
 
-                <div class="project-entry">
-                    <div class="project-visual">
-                        <img src="images/auav-aerial-min-scaled.jpg" alt="Power Line Network">
-                    </div>
-                    <div class="project-details">
-                        <span class="client-meta">PowerCore // Grid Networks</span>
-                        <h4>Transmission & Utility Infrastructure</h4>
-                        <p>Spearheaded the deployment of the <strong>Insite SaaS platform</strong> for high-voltage network inspections. Provided utility managers with a centralized source of truth for transmission health.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Insite SaaS</span>
-                            <span class="tech-tag">HV Networks</span>
-                            <span class="tech-tag">Fleet Deployment</span>
-                        </div>
-                    </div>
+                    <a href="operations.html" class="sector-card">
+                        <span class="sector-number">02 — Operations</span>
+                        <h4>Operations, Safety & Compliance</h4>
+                        <p>Chief Remote Pilot for 34+ pilots. BARS accreditation, CASA exemptions (MTO, eBVLOS, BVLOS-ROB, OONP), SORA applications, and one of Australia's first approved RePL training courses.</p>
+                        <span class="sector-link">View Details &rarr;</span>
+                    </a>
+
+                    <a href="emergency.html" class="sector-card">
+                        <span class="sector-number">03 — Emergency</span>
+                        <h4>Emergency Response & Public Safety</h4>
+                        <p>Real-time crowd monitoring for VicPol at the AFL Grand Final. Flood headwater tracking and post-disaster 3D assessment. ATAK/CoT situational awareness and Drone-in-a-Box persistent surveillance.</p>
+                        <span class="sector-link">View Details &rarr;</span>
+                    </a>
+
+                    <a href="industrial.html" class="sector-card">
+                        <span class="sector-number">04 — Industrial</span>
+                        <h4>Industrial Inspection & Survey</h4>
+                        <p>Tier-1 delivery for BHP, Rio Tinto, Woodside, and Exxon. Mining volumes, digital twins, flare stack inspections, confined space operations, transmission network surveys, and solar farm mapping.</p>
+                        <span class="sector-link">View Projects &rarr;</span>
+                    </a>
+
+                    <a href="environment.html" class="sector-card">
+                        <span class="sector-number">05 — Environment</span>
+                        <h4>Environment & Land Management</h4>
+                        <p>1,500+ wetlands surveyed for Brolga monitoring. AI-driven weed detection and prescriptive spray mapping. Forestry biomass estimation, carbon accounting, and NDVI analysis across regional Victoria.</p>
+                        <span class="sector-link">View Projects &rarr;</span>
+                    </a>
+
                 </div>
             </div>
         </div>
 
-        <!-- FULL WIDTH STRIP 2: Replaced with Dam Inspection shot -->
-        <div class="impact-strip" style="background-image: url('images/651012652_10243274845110749_1312324745071590588_n.jpg');"></div>
+        <!-- FULL WIDTH STRIP 2 -->
+        <div class="impact-strip" style="background-image: url('images/environment/Case-Study-Website-Banner (1).jpg'); background-position: center;"></div>
 
         <!-- History Section -->
         <div class="container">

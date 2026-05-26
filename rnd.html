@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D & Systems Engineering | Leon Dwyer</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Sector page header */
+        .sector-hero {
+            position: relative;
+            padding: 180px 0 80px 0;
+            border-bottom: none;
+            margin-bottom: 80px;
+            background-image: url('images/RnD/WhatsApp Image 2026-04-21 at 14.01.12.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        .sector-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(10, 12, 16, 0.5), rgba(10, 12, 16, 0.85));
+        }
+        .sector-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .sector-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .sector-hero p {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        /* Project cards */
+        .rnd-projects {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            margin-bottom: 100px;
+        }
+        .rnd-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 40px;
+            transition: border-color 0.3s;
+        }
+        .rnd-card:hover {
+            border-color: var(--accent);
+        }
+        .rnd-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .rnd-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        .rnd-card .card-org {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .rnd-card .card-meta {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .rnd-card p {
+            font-size: 0.92rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .rnd-card p:last-child {
+            margin-bottom: 0;
+        }
+        .rnd-card .tech-tags {
+            margin-top: 20px;
+        }
+
+        /* Image inside card */
+        .rnd-card-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+        }
+        .rnd-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: opacity 0.5s;
+        }
+        .rnd-card:hover .rnd-card-image img {
+            opacity: 0.9;
+        }
+
+        /* Section dividers */
+        .rnd-section {
+            margin-bottom: 100px;
+        }
+        .rnd-section-heading {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* Open source / Lua sections */
+        .contrib-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 100px;
+        }
+        .contrib-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 35px;
+            transition: border-color 0.3s;
+        }
+        .contrib-card:hover {
+            border-color: var(--accent);
+        }
+        .contrib-card h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        .contrib-card p {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .contrib-card p:last-child {
+            margin-bottom: 0;
+        }
+        .contrib-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .contrib-card ul li {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+        }
+        .contrib-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        @media (max-width: 640px) {
+            .sector-hero {
+                padding: 140px 0 60px 0;
+            }
+            .sector-hero h1 {
+                font-size: 2rem;
+            }
+            .rnd-card {
+                padding: 25px;
+            }
+            .contrib-grid {
+                grid-template-columns: 1fr;
+            }
+            .rnd-card-image {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none;">Leon Dwyer</a> <a href="https://www.linkedin.com/in/leon-dwyer-0a860815a/" target="_blank" rel="noopener noreferrer" class="nav-linkedin" aria-label="LinkedIn Profile"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a></div>
+            <div class="nav-links">
+                <a href="index.html#sectors">Sectors</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#solutions">History</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="sector-hero">
+        <div class="container">
+            <a href="index.html#sectors" class="back-link">&larr; All Sectors</a>
+            <h1>R&D & <strong>Systems Engineering</strong></h1>
+            <p>Custom airframes, ground control stations, synthetic obstacle avoidance, open-source flight stack contributions, and autonomous scripting across a decade of UAS development.</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <!-- Projects Section -->
+            <div class="rnd-section">
+                <span class="section-label">Projects</span>
+                <h2 class="rnd-section-heading">Platforms, systems, and <span style="color:var(--accent)">custom engineering.</span></h2>
+
+                <div class="rnd-projects">
+
+                    <!-- Balliyang -->
+                    <div class="rnd-card">
+                        <span class="card-org">SafeSky Systems // 2025 &ndash; Present</span>
+                        <div class="rnd-card-header">
+                            <h3>Balliyang &mdash; Synthetic LiDAR Obstacle Avoidance</h3>
+                        </div>
+                        <img src="images/RnD/lidar.jpg" alt="Balliyang synthetic LiDAR path planning" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                        <span class="card-meta">C++ / MAVLink / QGroundControl Plugin</span>
+                        <p>A novel obstacle avoidance system that ray-casts through pre-loaded 3D mesh models and sends MAVLink OBSTACLE_DISTANCE (msg 330) to the flight controller &mdash; providing LiDAR-equivalent spatial awareness without physical sensors.</p>
+                        <p>BVH-accelerated ray casting engine with WGS84/ECEF coordinate transforms. Ingests glTF 2.0 models with Draco decompression, enabling direct use of Google 3D Tiles as terrain and obstacle data. Custom QGroundControl plugin for mesh management and real-time visualization.</p>
+                        <p>Runs as a companion daemon on Raspberry Pi 5, communicating via UART to a Cube Orange flight controller. Flight tested May 2026.</p>
+                        <div class="tech-tags" style="clear: both;">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">MAVLink</span>
+                            <span class="tech-tag">QGroundControl</span>
+                            <span class="tech-tag">BVH Ray Casting</span>
+                            <span class="tech-tag">glTF 2.0</span>
+                            <span class="tech-tag">Draco</span>
+                            <span class="tech-tag">Google 3D Tiles</span>
+                            <span class="tech-tag">Raspberry Pi 5</span>
+                            <span class="tech-tag">UART</span>
+                            <span class="tech-tag">WGS84/ECEF</span>
+                        </div>
+                    </div>
+
+                    <!-- SafeSky GCS -->
+                    <div class="rnd-card">
+                        <span class="card-org">SafeSky Systems // 2024 &ndash; Present</span>
+                        <div class="rnd-card-header">
+                            <h3>SafeSky GCS &mdash; Custom Ground Control Station</h3>
+                        </div>
+                        <img src="images/RnD/GCS.jpeg" alt="SafeSky GCS - Teserai Ground Control Station" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                        <span class="card-meta">Flutter / Dart / MAVLink / C++</span>
+                        <p>Full ground control station built from scratch with a custom MAVLink v1/v2 parser. Features include mission planning, geofencing, multi-vehicle fleet management, RTSP video streaming (SIYI SDK integration), joystick control, ADS-B traffic awareness, and voice control.</p>
+                        <p>Supports Serial, TCP, UDP, and USB OTG communications with automatic link failover. AES-256-GCM parameter encryption backed by STM32H7 hardware cryptographic acceleration.</p>
+                        <p>Cross-platform deployment: iOS, Android, macOS, Windows, and Linux.</p>
+                        <div class="tech-tags" style="clear: both;">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Dart</span>
+                            <span class="tech-tag">MAVLink v1/v2</span>
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">SIYI SDK</span>
+                            <span class="tech-tag">ADS-B</span>
+                            <span class="tech-tag">AES-256-GCM</span>
+                            <span class="tech-tag">STM32H7</span>
+                            <span class="tech-tag">Cross-Platform</span>
+                        </div>
+                    </div>
+
+                    <!-- VTRX -->
+                    <div class="rnd-card">
+                        <span class="card-org">SafeSky Systems // 2024 &ndash; Present</span>
+                        <div class="rnd-card-header">
+                            <h3>VTRX &mdash; VTOL Fixed-Wing UAS</h3>
+                        </div>
+                        <span class="card-meta">PX4 / ArduPilot / CFD</span>
+                        <div class="rnd-card-image">
+                            <img src="images/RnD/WhatsApp Image 2026-04-21 at 14.01.07.jpeg" alt="VTRX VTOL in flight">
+                        </div>
+                        <p>12.2 kg, 3 m wingspan VTOL fixed-wing aircraft with 90-minute endurance and 50 km range. Features hot-swappable flight control surfaces and Picatinny rail payload mounting for rapid mission reconfiguration.</p>
+                        <p>ARK FMU V6X flight controller with MAD V505S 320KV motors. Automated OpenFOAM CFD pipeline for aerodynamic optimisation, validated against 29+ flight logs. Propulsion iteration across 3 motor/prop combinations to maximise efficiency.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">PX4</span>
+                            <span class="tech-tag">ArduPilot</span>
+                            <span class="tech-tag">OpenFOAM CFD</span>
+                            <span class="tech-tag">ARK FMU V6X</span>
+                            <span class="tech-tag">VTOL</span>
+                            <span class="tech-tag">Fixed-Wing</span>
+                            <span class="tech-tag">Aerodynamics</span>
+                        </div>
+                    </div>
+
+                    <!-- AUAV onSite -->
+                    <div class="rnd-card">
+                        <span class="card-org">AUAV // 2023 &ndash; 2024</span>
+                        <div class="rnd-card-header">
+                            <h3>AUAV onSite &mdash; &ldquo;Drone in a Box&rdquo;</h3>
+                        </div>
+                        <span class="card-meta">Systems Integration / CASA</span>
+                        <div class="rnd-card-image">
+                            <img src="images/onSite-clean-color-bigger-drone-2-scaled.jpg" alt="AUAV onSite Drone in a Box" style="object-position: center calc(50% - 60px);">
+                        </div>
+                        <p>Service module for the DJI Dock 3, engineered for remote and offshore deployment. Integrates redundant power (PV/Battery/Generator), failover data connectivity (5G LTE/Satellite/Ethernet), weather stations, CCTV, ADS-B receivers, and remote VHF radio.</p>
+                        <p>CASA ROB BVLOS acceptance achieved November 2025.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">DJI Dock 3</span>
+                            <span class="tech-tag">Systems Integration</span>
+                            <span class="tech-tag">CASA BVLOS</span>
+                            <span class="tech-tag">Redundant Power</span>
+                            <span class="tech-tag">5G LTE</span>
+                            <span class="tech-tag">Satellite Comms</span>
+                            <span class="tech-tag">ADS-B</span>
+                            <span class="tech-tag">Remote Operations</span>
+                        </div>
+                    </div>
+
+                    <!-- ForestMapper -->
+                    <div class="rnd-card">
+                        <span class="card-org">AUAV // 2016 &ndash; 2020</span>
+                        <div class="rnd-card-header">
+                            <h3>ForestMapper &mdash; Mapping Fixed-Wing</h3>
+                        </div>
+                        <span class="card-meta">ArduPilot</span>
+                        <div class="rnd-card-image">
+                            <img src="images/RnD/forestmapper.jpg" alt="ForestMapper fixed-wing launch">
+                        </div>
+                        <p>Rugged foam flying wing with 1.6 m wingspan, designed for high-volume aerial mapping. 13&ndash;19 m/s cruise speed with 80-minute endurance. Single and dual camera payload configurations for RGB and multispectral capture.</p>
+                        <p>Over 1,000 hours of production flight time across forestry, agriculture, and environmental survey campaigns.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">ArduPilot</span>
+                            <span class="tech-tag">Fixed-Wing</span>
+                            <span class="tech-tag">Mapping</span>
+                            <span class="tech-tag">Multispectral</span>
+                            <span class="tech-tag">1000+ Hours</span>
+                        </div>
+                    </div>
+
+                    <!-- CinneeShot -->
+                    <div class="rnd-card">
+                        <span class="card-org">VUAS // 2014</span>
+                        <div class="rnd-card-header">
+                            <h3>CinneeShot &mdash; Cinema Heavy-Lift</h3>
+                        </div>
+                        <img src="images/RnD/IMG-3832.JPG" alt="CinneeShot heavy-lift octocopter with Red Epic camera" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
+                        <span class="card-meta">ArduPilot</span>
+                        <p>Heavy-lift octocopter purpose-built for Red Epic cinema camera operations. Dual-operator control &mdash; pilot and camera operator &mdash; with redundant power systems, dual GPS, and autonomous flight modes.</p>
+                        <p>Developed in collaboration with Philip Rowes and Andrew Tridgell from the ArduPilot development team.</p>
+                        <div class="tech-tags" style="clear: both;">
+                            <span class="tech-tag">ArduPilot</span>
+                            <span class="tech-tag">Heavy-Lift</span>
+                            <span class="tech-tag">Octocopter</span>
+                            <span class="tech-tag">Red Epic</span>
+                            <span class="tech-tag">Cinema</span>
+                            <span class="tech-tag">Redundant Systems</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Open Source & Scripting -->
+            <div class="rnd-section">
+                <span class="section-label">Contributions & Scripting</span>
+                <h2 class="rnd-section-heading">Open source and <span style="color:var(--accent)">autonomous scripting.</span></h2>
+
+                <div class="contrib-grid">
+
+                    <div class="contrib-card">
+                        <h4>Open Source Contributions</h4>
+                        <p>Active contributor to two of the most widely used open-source flight stack projects:</p>
+                        <ul>
+                            <li><strong>ArduPilot</strong> (C++) &mdash; BendyRuler 3D obstacle avoidance, guided-mode OA path planner</li>
+                            <li><strong>QGroundControl</strong> &mdash; Ground control station contributions</li>
+                        </ul>
+                    </div>
+
+                    <div class="contrib-card">
+                        <h4>ArduPilot Lua Scripting</h4>
+                        <p>4,000+ lines of custom Lua scripts for autonomous mission operations:</p>
+                        <ul>
+                            <li>Autonomous VTOL soft-landing with rangefinder descent control</li>
+                            <li>One-button-launch with dynamic mission generation</li>
+                            <li>Ballistic payload delivery with real-time wind estimation</li>
+                            <li>In-flight security sanitisation</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>Leon Dwyer // 0423 720 477 // leonfliesthings@gmail.com</p>
+            <p style="margin-top: 15px; opacity: 0.4; font-weight: 200;">Ballarat, Victoria // Global Reach</p>
+            <a href="https://www.linkedin.com/in/leon-dwyer-0a860815a/" target="_blank" rel="noopener noreferrer" class="linkedin-link" aria-label="LinkedIn Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
