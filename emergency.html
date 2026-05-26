@@ -11,9 +11,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
         .sector-header {
+            position: relative;
             padding: 180px 0 80px 0;
-            border-bottom: 1px solid var(--border);
+            border-bottom: none;
             margin-bottom: 80px;
+            background-image: url('images/industrial/IMG-0974.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        .sector-header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(10, 12, 16, 0.5), rgba(10, 12, 16, 0.85));
+        }
+        .sector-header .container {
+            position: relative;
+            z-index: 1;
         }
         .sector-header h1 {
             font-size: 2.8rem;
@@ -111,53 +126,53 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="sector-header">
+    <header class="sector-header">
+        <div class="container">
             <a href="index.html#sectors" class="sector-back">&larr; All Sectors</a>
             <span class="section-label">03 — Emergency</span>
             <h1>Emergency Response & Public Safety</h1>
             <p>Real-time aerial intelligence for security coordination, disaster response, and persistent surveillance across dynamic, high-stakes environments.</p>
         </div>
-    </div>
+    </header>
 
     <main>
         <div class="container">
 
             <div class="sector-section">
                 <span class="section-label">Crowd Monitoring</span>
+                <img src="images/emergency/04ca340b44d770865970fa46b26967a503717803.jpg" alt="AFL Grand Final aerial crowd monitoring" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
                 <h3>Victoria Police — AFL Grand Final Crowd Monitoring</h3>
                 <p>Provided real-time aerial crowd monitoring for Victoria Police during the AFL Grand Final parade in the Melbourne CBD. Live drone feeds delivered situational awareness for security coordination across the event.</p>
-                <div class="image-placeholder">Image Placeholder</div>
             </div>
 
             <div class="sector-section">
                 <span class="section-label">Disaster Response</span>
+                <img src="images/emergency/Flood.jpg" alt="Goulburn River flood aerial monitoring" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
                 <h3>Flood Response — Goulburn River System</h3>
                 <p>Conducted real-time flood headwater monitoring along the Goulburn River and subsequent large-area post-flood damage assessment. Delivered 3D georeferenced mapping to support community recovery efforts.</p>
-                <div class="image-placeholder">Image Placeholder</div>
             </div>
 
             <div class="sector-section">
                 <span class="section-label">Situational Awareness</span>
+                <img src="images/emergency/ATAK.jpg" alt="ATAK situational awareness interface" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
                 <h3>ATAK & Cursor on Target (CoT)</h3>
                 <p>Experience integrating drone feeds into ATAK (Android Team Awareness Kit) — a cross-domain situational awareness platform used by emergency services, defence, and public safety agencies worldwide. ATAK enables real-time information sharing from drones, mobile phones, security cameras, and ground teams into a shared common operating picture.</p>
                 <p>CoT (Cursor on Target) provides the standardised data format for position and status exchange. This gives incident controllers and ground teams real-time visibility of drone operations, target locations, and environmental conditions — critical for coordinated emergency response.</p>
-                <div class="image-placeholder">Image Placeholder</div>
             </div>
 
             <div class="sector-section">
                 <span class="section-label">Persistent Surveillance</span>
+                <img src="images/onSite-clean-color-bigger-drone-2-scaled.jpg" alt="AUAV onSite Drone in a Box" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
                 <h3>Drone-in-a-Box Persistent Surveillance</h3>
                 <p>Led the development and CASA certification of the AUAV onSite "Drone in a Box" system — a fully remote, monitored, and managed aerial surveillance platform with redundant power (PV/Battery/Generator) and failover communications (5G LTE/Satellite/Ethernet).</p>
                 <p>Secured ROB BVLOS approval enabling persistent, autonomous aerial monitoring — directly applicable to beach patrol, waterway surveillance, and search operations.</p>
-                <div class="image-placeholder">Image Placeholder</div>
             </div>
 
             <div class="sector-section">
                 <span class="section-label">Operational Experience</span>
+                <img src="images/industrial/IMG-0631.jpeg" alt="Elios confined space drone inspection" style="float: right; width: 45%; margin: 0 0 15px 25px; border: 1px solid var(--border); opacity: 0.85;">
                 <h3>Operational Capability in Dynamic Environments</h3>
                 <p>6,800+ hours of commercial RPAS operations including high-pressure, time-critical environments: offshore rigs, power station shutdowns, confined spaces, public events. Experience across VLOS, eVLOS, NVFR, eBVLOS, BVLOS, BVLOS-ROB, OONP, and GPS-denied operations.</p>
-                <div class="image-placeholder">Image Placeholder</div>
             </div>
 
         </div>
