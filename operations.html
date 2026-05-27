@@ -32,29 +32,45 @@
             z-index: 1;
         }
         .sector-hero h1 {
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             font-weight: 300;
+            line-height: 1.1;
             letter-spacing: -0.02em;
-            margin-bottom: 0;
+            margin-bottom: 20px;
+        }
+        .sector-hero p {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Two-column layout */
+        .ops-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px 40px;
         }
 
         /* Content sections */
         .ops-section {
-            margin-bottom: 80px;
+            margin-bottom: 0;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
         }
         .ops-section h3 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 500;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             color: var(--text);
         }
         .ops-section p {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 300;
             color: var(--text-dim);
-            line-height: 1.8;
-            margin-bottom: 15px;
-            max-width: 800px;
+            line-height: 1.7;
+            margin-bottom: 8px;
         }
         .ops-section ul {
             list-style: none;
@@ -62,12 +78,12 @@
             margin: 0;
         }
         .ops-section ul li {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 300;
             color: var(--text-dim);
-            padding: 10px 0;
+            padding: 5px 0;
             border-bottom: 1px solid var(--border);
-            line-height: 1.6;
+            line-height: 1.5;
         }
         .ops-section ul li:last-child {
             border-bottom: none;
@@ -77,26 +93,10 @@
             font-weight: 500;
         }
 
-        /* Divider between sections */
-        .section-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 0 0 80px 0;
+        /* Full-width section spans both columns */
+        .ops-section.full-width {
+            grid-column: 1 / -1;
         }
-
-        /* Back link */
-        .back-link {
-            display: inline-block;
-            margin-bottom: 40px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .back-link:hover {
-            color: var(--text);
         }
 
         @media (max-width: 640px) {
@@ -105,6 +105,9 @@
             }
             .sector-hero h1 {
                 font-size: 1.8rem;
+            }
+            .ops-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -126,104 +129,94 @@
     <header class="sector-hero">
         <div class="container">
             <h1>Operations, Safety & Compliance</h1>
+            <p>Chief Remote Pilot leadership, BARS accreditation, CASA exemptions, SORA applications, training delivery, and structured safety management systems across multiple ReOCs and industries.</p>
+        </div>
+        <div class="hero-sector-bar">
+            <div class="container">
+                <a href="rnd.html">R&D</a>
+                <a href="operations.html" class="active">Operations</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="industrial.html">Industrial</a>
+                <a href="environment.html">Environmental</a>
+            </div>
         </div>
     </header>
 
     <main>
         <div class="container">
+            <div class="ops-grid">
 
-            <a href="index.html#sectors" class="back-link">&larr; All Sectors</a>
+                <div class="ops-section">
+                    <span class="section-label">Leadership</span>
+                    <h3>Chief Remote Pilot</h3>
+                    <p>Led operational compliance, pilot oversight, and safety management at AUAV and SafeSky Systems. Managed flight approvals, flight checks, and operational oversight for 34+ RPAS pilots across Australia.</p>
+                    <p>Developed and submitted the SafeSky Systems Operations Manual, achieving CASA approval for complete One-to-Many, BVLOS, and Dropping and Discharging operations on first application with no revisions.</p>
+                </div>
 
-            <!-- Chief Remote Pilot -->
-            <div class="ops-section">
-                <span class="section-label">Leadership</span>
-                <h3>Chief Remote Pilot</h3>
-                <p>Led operational compliance, pilot oversight, and safety management at AUAV and SafeSky Systems. Managed flight approvals, flight checks, and operational oversight for 34+ RPAS pilots across Australia.</p>
+                <div class="ops-section">
+                    <span class="section-label">Accreditation</span>
+                    <h3>BARS Accreditation</h3>
+                    <p>Took AUAV from non-compliance to BARS accreditation. Reformed operations manual, training systems, record keeping, and flight planning. Transitioned from Flyfreely to AVCRM. Passed three consecutive audits with no first-tier findings and only four second-tier findings across three years.</p>
+                </div>
+
+                <div class="ops-section">
+                    <span class="section-label">Regulatory</span>
+                    <h3>CASA Exemptions Secured</h3>
+                    <ul>
+                        <li><strong>MTO / Swarm</strong> -- Up to 4 RPAS simultaneously</li>
+                        <li><strong>Sub-150 kg RPAS</strong> -- Heavy-lift platforms</li>
+                        <li><strong>eBVLOS</strong> -- Offshore rigs, power stations</li>
+                        <li><strong>BVLOS / ROB</strong> -- Drone-in-a-box remote ops</li>
+                        <li><strong>OONP</strong> -- All three CASA pathways</li>
+                        <li><strong>NOTAM Originator</strong></li>
+                    </ul>
+                </div>
+
+                <div class="ops-section">
+                    <span class="section-label">Airspace</span>
+                    <h3>Area Approvals & Defence</h3>
+                    <ul>
+                        <li>Within 3nm of <strong>YMLT, YSSY, YBAF, YBBN</strong></li>
+                        <li>Above 400ft at <strong>Yallourn</strong> (to 800ft AGL)</li>
+                        <li>Up to <strong>900ft AGL</strong> Australia-wide</li>
+                        <li><strong>RAAF Amberley</strong> -- Defence LOA</li>
+                        <li><strong>RAAF Darwin (YPDN)</strong> -- Defence LOA</li>
+                        <li><strong>RAAF Richmond (YSRI)</strong> -- Defence LOA</li>
+                    </ul>
+                </div>
+
+                <div class="ops-section">
+                    <span class="section-label">Risk Assessment</span>
+                    <h3>SORA Applications</h3>
+                    <ul>
+                        <li><strong>Nevertire Solar Farm</strong> -- BVLOS/ROB</li>
+                        <li><strong>NT INPEX</strong> -- BVLOS/ROB and ERP</li>
+                        <li><strong>WA Karratha Gas Fields</strong> -- BVLOS/ROB</li>
+                        <li><strong>NSW Gladstone Coal Ports</strong> -- BVLOS/ROB</li>
+                    </ul>
+                </div>
+
+                <div class="ops-section">
+                    <span class="section-label">Training</span>
+                    <h3>Training & Assessment</h3>
+                    <p>In 2013, developed a full RePL syllabus and examination accepted by CASA -- one of the first approved courses in Australia. Delivered course material and assessed students for RePL approval.</p>
+                    <p>Multi-rotor and fixed-wing instructor. Maintained in-house training and flight checks for all pilots.</p>
+                </div>
+
+                <div class="ops-section">
+                    <span class="section-label">Safety</span>
+                    <h3>Safety & Incident Management</h3>
+                    <p>HSEQ -- incident management, investigation, root cause analysis, corrective actions. JSA/SWMS risk assessment.</p>
+                    <p>Stood down operations under significant commercial pressure when conditions were unsafe — safety is non-negotiable.</p>
+                </div>
+
+                <div class="ops-section">
+                    <span class="section-label">Governance</span>
+                    <h3>Regulatory Knowledge</h3>
+                    <p>CASA Part 101, MOS, CAR 101, TMI. Operations Manual authoring and amendments. Policy and procedure development. Aviation audits (BARS) / ISO.</p>
+                </div>
+
             </div>
-
-            <hr class="section-divider">
-
-            <!-- BARS Accreditation -->
-            <div class="ops-section">
-                <span class="section-label">Accreditation</span>
-                <h3>BARS Accreditation</h3>
-                <p>Took AUAV from non-compliance to BARS accreditation. Reformed operations manual, training systems, record keeping, and flight planning. Transitioned from Flyfreely to AVCRM.</p>
-                <p>Led cultural change -- all staff submitting flight plans, logging flights, reporting defects. Passed three consecutive audits with minimal findings.</p>
-            </div>
-
-            <hr class="section-divider">
-
-            <!-- CASA Exemptions -->
-            <div class="ops-section">
-                <span class="section-label">Regulatory</span>
-                <h3>CASA Exemptions Secured</h3>
-                <ul>
-                    <li><strong>Many-to-One / Swarm Operations (MTO)</strong> -- Up to 4 RPAS simultaneously</li>
-                    <li><strong>Sub-150 kg RPAS</strong> -- Heavy-lift platforms</li>
-                    <li><strong>eBVLOS</strong> -- Offshore rigs, power stations, chemical plants</li>
-                    <li><strong>BVLOS / Remote Operations Base (ROB)</strong> -- Drone-in-a-box remote operations</li>
-                    <li><strong>Operations Over or Near People (OONP)</strong> -- All three CASA pathways</li>
-                    <li><strong>NOTAM Originator</strong></li>
-                </ul>
-            </div>
-
-            <hr class="section-divider">
-
-            <!-- Area Approvals -->
-            <div class="ops-section">
-                <span class="section-label">Airspace</span>
-                <h3>Area Approvals</h3>
-                <ul>
-                    <li>Within 3nm of <strong>YMLT</strong>, <strong>YSSY</strong>, <strong>YBAF</strong></li>
-                    <li>Above 400ft at <strong>Yallourn</strong> (to 800ft AGL)</li>
-                    <li>Up to <strong>900ft AGL</strong> outside controlled airspace, Australia-wide</li>
-                    <li><strong>Defence coordination</strong> — Letters of Agreement and operational approvals for RPAS operations at <strong>RAAF Base Amberley</strong>, <strong>RAAF Base Darwin (YPDN)</strong>, and <strong>RAAF Base Richmond (YSRI)</strong></li>
-                </ul>
-            </div>
-
-            <hr class="section-divider">
-
-            <!-- SORA Applications -->
-            <div class="ops-section">
-                <span class="section-label">Risk Assessment</span>
-                <h3>SORA Applications</h3>
-                <ul>
-                    <li><strong>Nevertire Solar Farm</strong> -- BVLOS/ROB</li>
-                    <li><strong>NT INPEX</strong> -- BVLOS/ROB and ERP</li>
-                    <li><strong>WA Karratha Gas Fields</strong> -- BVLOS/ROB</li>
-                    <li><strong>NSW Gladstone Coal Ports</strong> -- BVLOS/ROB</li>
-                </ul>
-            </div>
-
-            <hr class="section-divider">
-
-            <!-- Training & Assessment -->
-            <div class="ops-section">
-                <span class="section-label">Training</span>
-                <h3>Training & Assessment</h3>
-                <p>In 2013, developed and submitted a full RePL syllabus and examination accepted by CASA -- one of the first approved RePL courses in Australia. Delivered course material and assessed students.</p>
-                <p>Multi-rotor and fixed-wing instructor. Maintained in-house training and flight checks for all pilots.</p>
-            </div>
-
-            <hr class="section-divider">
-
-            <!-- Safety & Incident Management -->
-            <div class="ops-section">
-                <span class="section-label">Safety</span>
-                <h3>Safety & Incident Management</h3>
-                <p>HSEQ experience -- incident management, investigation, root cause analysis, corrective actions. JSA/SWMS risk assessment.</p>
-                <p>Has stood down operations under significant commercial pressure when conditions were unsafe, and ended professional engagements rather than compromise on aviation safety.</p>
-            </div>
-
-            <hr class="section-divider">
-
-            <!-- Regulatory Knowledge -->
-            <div class="ops-section">
-                <span class="section-label">Governance</span>
-                <h3>Regulatory Knowledge</h3>
-                <p>CASA Part 101, MOS, CAR 101, TMI. Operations Manual authoring and amendments. Policy and procedure development. Aviation audits (BARS) / ISO.</p>
-            </div>
-
         </div>
     </main>
 

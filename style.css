@@ -149,7 +149,7 @@ nav {
     font-weight: 300;
 }
 
-/* Hero sector navigation bar */
+/* Sector navigation bar */
 .hero-sector-bar {
     position: absolute;
     bottom: 0;
@@ -187,6 +187,12 @@ nav {
 .hero-sector-bar a:hover {
     color: var(--accent);
     background: rgba(56, 189, 248, 0.05);
+}
+
+.hero-sector-bar a.active {
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    border-bottom: 2px solid var(--accent);
 }
 
 /* Precise Stats Section */
@@ -275,10 +281,11 @@ nav {
 .tech-tag {
     font-size: 0.65rem;
     padding: 4px 12px;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(56, 189, 248, 0.15);
     border-radius: 2px;
     color: var(--text-dim);
     letter-spacing: 1px;
+    background: rgba(56, 189, 248, 0.06);
 }
 
 /* Fixed Impact Strips */

@@ -11,9 +11,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
         .sector-hero {
+            position: relative;
             padding: 180px 0 80px 0;
-            border-bottom: 1px solid var(--border);
+            border-bottom: none;
             margin-bottom: 80px;
+            background-image: url('images/mining-action.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .sector-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(10, 12, 16, 0.5), rgba(10, 12, 16, 0.85));
+        }
+        .sector-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .sector-hero .hero-sector-bar {
+            z-index: 1;
         }
         .sector-hero h1 {
             font-size: 2.8rem;
@@ -48,7 +66,7 @@
         }
 
         .case-study-section {
-            margin-bottom: 100px;
+            margin-bottom: 40px;
         }
         .case-study-section h2 {
             font-size: 1.6rem;
@@ -113,7 +131,7 @@
             width: 100%;
             height: 1px;
             background: var(--border);
-            margin: 20px 0 80px 0;
+            margin: 10px 0 40px 0;
         }
 
         @media (max-width: 640px) {
@@ -139,13 +157,19 @@
 
     <header class="sector-hero">
         <div class="container">
-            <a href="index.html#sectors" class="back-link">&larr; All Sectors</a>
             <h1><strong>Industrial Inspection</strong> & Survey</h1>
             <p>Tier-1 delivery across mining, oil and gas, energy, transmission, and waste management. BARS-compliant data acquisition, 3D digital twins, confined space operations, and large-scale survey programs.</p>
         </div>
+        <div class="hero-sector-bar">
+            <div class="container">
+                <a href="rnd.html">R&D</a>
+                <a href="operations.html">Operations</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="industrial.html" class="active">Industrial</a>
+                <a href="environment.html">Environmental</a>
+            </div>
+        </div>
     </header>
-
-    <div class="impact-strip" style="background-image: url('images/mining-action.jpg');"></div>
 
     <main>
 
