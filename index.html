@@ -14,7 +14,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
-            margin-bottom: 150px;
+            margin-bottom: 40px;
             align-items: center;
         }
         .about-text h2 {
@@ -54,11 +54,11 @@
         }
         
         .timeline {
-            margin-bottom: 150px;
+            margin-bottom: 0px;
         }
         .timeline-item {
             display: grid;
-            grid-template-columns: 200px 1fr;
+            grid-template-columns: 100px 1fr;
             gap: 40px;
             padding: 40px 0;
             border-bottom: 1px solid var(--border);
@@ -88,7 +88,7 @@
 
         /* Sector cards */
         .sectors {
-            margin-bottom: 150px;
+            margin-bottom: 0px;
         }
         .sectors-heading {
             font-size: 2rem;
@@ -227,23 +227,14 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item"><h3>13Y+</h3><p>Innovation</p></div>
-            <div class="stat-item"><h3>6800H+</h3><p>Command</p></div>
-            <div class="stat-item"><h3>Tier 1</h3><p>Safety</p></div>
-            <div class="stat-item"><h3>BARS</h3><p>Accredited</p></div>
-        </div>
-    </div>
-
     <main>
-        
+
         <!-- About Section -->
         <div class="container">
-            
+
             <div class="about-grid">
                 <div class="about-text">
-                    <span class="section-label" id="about">Engineering Philosophy</span>
+                    <span class="section-label" id="about">My Approach</span>
                     <h2>Bridging Precision and <span style="color:var(--accent)">Visual Intelligence.</span></h2>
                     <p>My career began in Multimedia and Graphic Design, a foundation that taught me how to distill complex information into intuitive, high-impact visuals. Over the last 13 years, I have pivoted this 'visual-first' mindset into the aerospace sector.</p>
                     <p>I don't just see drones as hardware; I see them as data-acquisition solutions. Whether it's architecting a Many-to-Many GCS or navigating high-voltage networks in <strong>GPS-denied environments</strong>, my goal is to bridge the gap between raw engineering and actionable commercial intelligence using advanced <strong>IMU, LiDAR, and Multispectral</strong> sensor arrays.</p>
@@ -255,6 +246,13 @@
                         <p style="font-style: italic; color: var(--text);">"I specialize in scaling autonomous systems within high-stakes, regulated environments. My work ensures that when a Tier-1 client like BHP or Woodside needs data, the delivery is safe, BARS-compliant, and technically flawless."</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item"><h3>13Y+</h3><p>Innovation</p></div>
+                <div class="stat-item"><h3>6800H+</h3><p>Command</p></div>
+                <div class="stat-item"><h3>Tier 1</h3><p>Safety</p></div>
+                <div class="stat-item"><h3>BARS</h3><p>Accredited</p></div>
             </div>
         </div>
 
@@ -309,6 +307,36 @@
                         <span class="sector-link">View Projects &rarr;</span>
                     </a>
 
+                </div>
+
+                <div class="stack-grid" style="margin-top: 50px; margin-bottom:0!important; padding:30px 0 0 0;">
+                    <div class="stack-category">
+                        <h5>Flight & Control</h5>
+                        <ul>
+                            <li>MR, VTOL & Fixed-Wing (to 25kg)</li>
+                            <li>GPS-Denied & Confined Space Ops</li>
+                            <li>Many-to-Many GCS Architecture</li>
+                            <li>Ardupilot, PX4 & DJI Ecosystems</li>
+                        </ul>
+                    </div>
+                    <div class="stack-category">
+                        <h5>Software & Integration</h5>
+                        <ul>
+                            <li>SaaS Platform Deployment (Insite)</li>
+                            <li>Python, Node.js, SQL</li>
+                            <li>Flutter & C++ Development</li>
+                            <li>API & Sensor Integration</li>
+                        </ul>
+                    </div>
+                    <div class="stack-category">
+                        <h5>Visual & Sensor Intelligence</h5>
+                        <ul>
+                            <li>LiDAR, Multispectral & IMU Sensors</li>
+                            <li>3D Digital Twin Workflows</li>
+                            <li>Pix4D / RealityCapture</li>
+                            <li>QGIS / ESRI / Global Mapper</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -365,39 +393,6 @@
 
         <!-- FULL WIDTH MISSION BANNER -->
         <div class="field-collage" style="background-image: url('images/mining-action.jpg');"></div>
-
-        <!-- Tech Stack Section -->
-        <div class="container">
-            <div class="stack-grid">
-                <div class="stack-category">
-                    <h5>Flight & Control</h5>
-                    <ul>
-                        <li>MR, VTOL & Fixed-Wing (to 25kg)</li>
-                        <li>GPS-Denied & Confined Space Ops</li>
-                        <li>Many-to-Many GCS Architecture</li>
-                        <li>Ardupilot, PX4 & DJI Ecosystems</li>
-                    </ul>
-                </div>
-                <div class="stack-category">
-                    <h5>Software & Integration</h5>
-                    <ul>
-                        <li>SaaS Platform Deployment (Insite)</li>
-                        <li>Python, Node.js, SQL</li>
-                        <li>Flutter & C++ Development</li>
-                        <li>API & Sensor Integration</li>
-                    </ul>
-                </div>
-                <div class="stack-category">
-                    <h5>Visual & Sensor Intelligence</h5>
-                    <ul>
-                        <li>LiDAR, Multispectral & IMU Sensors</li>
-                        <li>3D Digital Twin Workflows</li>
-                        <li>Pix4D / RealityCapture</li>
-                        <li>QGIS / ESRI / Global Mapper</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
 
     </main>
 

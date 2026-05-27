@@ -80,7 +80,7 @@ nav {
 /* Hero - Expanded 6-Image Gallery Fade */
 .hero {
     position: relative;
-    padding: 220px 0 160px 0; /* Adjusted for fixed nav */
+    padding: 220px 0 120px 0; /* Adjusted for fixed nav */
     margin-bottom: 80px;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
@@ -303,11 +303,11 @@ nav {
 
 .field-collage {
     width: 100%;
-    height: 450px;
+    height: 350px;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    margin: 100px 0;
+    margin: 40px 0 0 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     position: relative;
@@ -406,7 +406,62 @@ footer {
     color: var(--accent);
 }
 
+/* Sector page hero — shared across all sector pages */
+.sector-hero {
+    position: relative;
+    padding: 180px 0 60px 0;
+    min-height: 450px;
+    border-bottom: none;
+    margin-bottom: 40px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.sector-hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(rgba(10, 12, 16, 0.5), rgba(10, 12, 16, 0.85));
+}
+
+.sector-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.sector-hero .hero-sector-bar {
+    z-index: 1;
+}
+
+.sector-hero h1 {
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin: 30px 0 10px;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 1);
+}
+
+.sector-hero h1 strong {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.sector-hero p {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin: 0 0 30px 0;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+}
+
 @media (max-width: 640px) {
+    .sector-hero { padding: 140px 0 60px 0; min-height: 300px; }
+    .sector-hero h1 { font-size: 2rem; }
     .project-entry { grid-template-columns: 1fr; gap: 30px; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .timeline-item { grid-template-columns: 1fr; gap: 10px; }
