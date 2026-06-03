@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal — Drone Project Management & Survey Planning Platform | LittleRipper_Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0077B6;
+            --primary-dark: #005F8A;
+            --primary-light: #00B4D8;
+            --accent: #48CAE4;
+            --accent-light: #90E0EF;
+            --dark: #0D1B2A;
+            --dark-mid: #1B2838;
+            --text: #2C3E50;
+            --text-light: #5A6C7E;
+            --bg: #FFFFFF;
+            --bg-alt: #F0F7FA;
+            --bg-dark: #E8F1F5;
+            --success: #06D6A0;
+            --warning: #FF9F1C;
+            --danger: #EF476F;
+            --border: #D1E3EB;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+            background: var(--bg);
+        }
+
+        /* ── Typography ── */
+        h1, h2, h3, h4 { font-weight: 700; line-height: 1.25; color: var(--dark); }
+        h1 { font-size: 2.75rem; letter-spacing: -0.03em; }
+        h2 { font-size: 2rem; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        h3 { font-size: 1.35rem; margin-bottom: 0.75rem; }
+        h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; }
+
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--primary);
+            background: rgba(0, 119, 182, 0.08);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.25rem;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        /* ── Cover ── */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(135deg, rgba(13,27,42,0.92) 0%, rgba(10,37,64,0.88) 50%, rgba(0,95,138,0.85) 100%),
+                url('https://images.unsplash.com/photo-1681922938506-1f3fca9b4535?w=1600&q=80') center/cover no-repeat;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 180, 216, 0.15) 0%, transparent 70%);
+        }
+
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(72, 202, 228, 0.1) 0%, transparent 70%);
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .cover-logo {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .cover-logo i {
+            font-size: 1.2rem;
+        }
+
+        .cover h1 {
+            color: white;
+            font-size: 3.25rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .cover h1 span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cover-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .cover-meta {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .cover-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ── Alternating Section Backgrounds ── */
+        .bg-alt { background: var(--bg-alt); }
+        .bg-dark {
+            background: linear-gradient(135deg, var(--dark) 0%, #0A2540 100%);
+            color: rgba(255,255,255,0.85);
+        }
+        .bg-dark h2, .bg-dark h3, .bg-dark h4 { color: white; }
+        .bg-dark .section-label {
+            color: var(--accent);
+            background: rgba(72, 202, 228, 0.15);
+        }
+        .bg-dark .lead { color: rgba(255,255,255,0.6); }
+
+        /* ── Cards ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 30px rgba(0, 119, 182, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            color: white;
+        }
+
+        .card-icon.blue { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+        .card-icon.teal { background: linear-gradient(135deg, var(--primary-light), var(--accent)); }
+        .card-icon.green { background: linear-gradient(135deg, var(--success), #0BC98A); }
+        .card-icon.orange { background: linear-gradient(135deg, var(--warning), #FFB84D); }
+
+        .card h4 { margin-bottom: 0.5rem; }
+        .card p { font-size: 0.95rem; color: var(--text-light); margin-bottom: 0; }
+
+        /* ── Comparison ── */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .comparison-box {
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .comparison-box.before {
+            background: #FFF5F5;
+            border: 2px solid #FEC8C8;
+        }
+
+        .comparison-box.after {
+            background: #F0FFF4;
+            border: 2px solid #9AE6B4;
+        }
+
+        .comparison-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .before .comparison-badge { background: #FEB2B2; color: #9B2C2C; }
+        .after .comparison-badge { background: #9AE6B4; color: #276749; }
+
+        /* ── SVG Diagrams ── */
+        .diagram-container {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .bg-dark .diagram-container {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .diagram-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .diagram-caption {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent), var(--success), var(--warning));
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 75px;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-dot {
+            position: absolute;
+            left: 16px;
+            top: 4px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px var(--primary);
+            z-index: 1;
+        }
+
+        .timeline-dot.phase1 { background: var(--primary); box-shadow: 0 0 0 3px var(--primary); }
+        .timeline-dot.phase2 { background: var(--accent); box-shadow: 0 0 0 3px var(--accent); }
+        .timeline-dot.phase3 { background: var(--success); box-shadow: 0 0 0 3px var(--success); }
+        .timeline-dot.phase4 { background: var(--warning); box-shadow: 0 0 0 3px var(--warning); }
+
+        .timeline-content {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        .timeline-badge.beta { background: rgba(0, 119, 182, 0.1); color: var(--primary); }
+        .timeline-badge.mvp { background: rgba(72, 202, 228, 0.15); color: #0891B2; }
+        .timeline-badge.future { background: rgba(6, 214, 160, 0.1); color: #059669; }
+        .timeline-badge.vision { background: rgba(255, 159, 28, 0.1); color: #D97706; }
+
+        .timeline-duration {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.35rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .feature-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-size: 0.75rem;
+            top: 0.55rem;
+        }
+
+        .feature-list li.highlight {
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .feature-list li.highlight::before {
+            content: '\f005';
+            color: var(--warning);
+        }
+
+        /* ── Data Table ── */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .data-table th {
+            background: var(--bg-alt);
+            text-align: left;
+            padding: 0.85rem 1.25rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-light);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .cost-free {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* ── Stats Bar ── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.25rem;
+        }
+
+        /* ── Investment Section ── */
+        .investment-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .investment-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary), 0 8px 30px rgba(0, 119, 182, 0.15);
+        }
+
+        .investment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .placeholder-rate {
+            display: inline-block;
+            background: #FFF3CD;
+            border: 1px dashed #FFCD39;
+            padding: 0.2rem 0.75rem;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #856404;
+        }
+
+        /* ── Vision Section ── */
+        .vision-stages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin: 2.5rem 0;
+            position: relative;
+        }
+
+        .vision-stage {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+
+        .vision-stage:not(:last-child)::after {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.3);
+            font-size: 1.5rem;
+            z-index: 1;
+        }
+
+        .vision-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-size: 1.75rem;
+        }
+
+        .vision-stage:nth-child(1) .vision-icon {
+            background: rgba(0, 119, 182, 0.2);
+            color: var(--accent);
+        }
+        .vision-stage:nth-child(2) .vision-icon {
+            background: rgba(6, 214, 160, 0.2);
+            color: var(--success);
+        }
+        .vision-stage:nth-child(3) .vision-icon {
+            background: rgba(255, 159, 28, 0.2);
+            color: var(--warning);
+        }
+
+        .vision-stage h4 { color: white; margin-bottom: 0.5rem; }
+        .vision-stage p { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 0; }
+
+        /* ── Architecture Diagram ── */
+        .arch-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            max-width: 700px;
+            margin: 2rem auto;
+        }
+
+        .arch-layer {
+            padding: 1.25rem 2rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .arch-layer:first-child { border-radius: 12px 12px 0 0; }
+        .arch-layer:last-child { border-radius: 0 0 12px 12px; }
+
+        .arch-layer .arch-sub {
+            font-weight: 400;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        .arch-l1 { background: var(--primary); color: white; }
+        .arch-l2 { background: var(--primary-light); color: white; }
+        .arch-l3 { background: var(--accent); color: var(--dark); }
+        .arch-l4 { background: var(--accent-light); color: var(--dark); }
+        .arch-l5 { background: var(--bg-dark); color: var(--dark); border: 1px solid var(--border); }
+
+        .arch-connector {
+            width: 2px;
+            height: 12px;
+            background: var(--border);
+            margin: 0 auto;
+        }
+
+        /* ── Data Sources Sidebar ── */
+        .data-sources-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .data-source {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .data-source-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            background: var(--bg-alt);
+            color: var(--primary);
+        }
+
+        .data-source h4 { font-size: 0.95rem; margin-bottom: 0.2rem; }
+        .data-source p { font-size: 0.82rem; color: var(--text-light); margin-bottom: 0; }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .cta-section h2 { color: white; font-size: 2.25rem; margin-bottom: 1rem; }
+        .cta-section p { color: rgba(255,255,255,0.6); font-size: 1.15rem; max-width: 600px; margin: 0 auto 2rem; }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(72, 202, 228, 0.4);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Workflow Pipeline ── */
+        .pipeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .pipeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+        }
+
+        .pipeline-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+            background: var(--primary);
+        }
+
+        .pipeline-step:nth-child(2) .pipeline-icon { background: var(--primary-light); }
+        .pipeline-step:nth-child(3) .pipeline-icon { background: var(--accent); color: var(--dark); }
+        .pipeline-step:nth-child(4) .pipeline-icon { background: var(--success); }
+        .pipeline-step:nth-child(5) .pipeline-icon { background: var(--warning); color: var(--dark); }
+
+        .pipeline-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .pipeline-arrow {
+            font-size: 1.25rem;
+            color: var(--border);
+            margin: 0 0.25rem;
+            padding-bottom: 1.5rem;
+        }
+
+        /* ── Highlight box ── */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 119, 182, 0.05), rgba(72, 202, 228, 0.08));
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p { margin-bottom: 0; }
+
+        /* ── Inline metrics ── */
+        .metric-row {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric {
+            flex: 1;
+            text-align: center;
+            padding: 1.25rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+
+        /* ── Print ── */
+        @media print {
+            /* Force browsers to print background colours and images */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            html, body {
+                margin: 0;
+                padding: 0;
+                font-size: 10.5pt;
+                width: 100%;
+            }
+
+            /* Cover page */
+            .cover {
+                min-height: auto;
+                padding: 1.5rem 2rem;
+                background:
+                    linear-gradient(135deg, rgba(13,27,42,0.95) 0%, rgba(10,37,64,0.95) 50%, rgba(0,95,138,0.92) 100%) !important;
+            }
+
+            .cover h1 {
+                font-size: 1.75rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .cover-logo {
+                margin-bottom: 1rem !important;
+                font-size: 0.8rem !important;
+            }
+
+            .cover-subtitle {
+                font-size: 0.9rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .cover-meta {
+                font-size: 0.75rem !important;
+            }
+
+            .cover::before, .cover::after {
+                display: none !important;
+            }
+
+            /* Sections fill full page width */
+            .section {
+                padding: 2rem 1.5rem;
+                max-width: 100%;
+            }
+
+            /* Ensure bg-alt and bg-dark sections extend full width */
+            .bg-alt {
+                background: var(--bg-alt) !important;
+                margin: 0;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .bg-dark {
+                background: linear-gradient(135deg, var(--dark) 0%, #0A2540 100%) !important;
+                color: rgba(255,255,255,0.85) !important;
+            }
+
+            .bg-dark h2, .bg-dark h3, .bg-dark h4 { color: white !important; }
+            .bg-dark p, .bg-dark .lead { color: rgba(255,255,255,0.7) !important; }
+
+            /* Cards, diagrams, and investment boxes keep their backgrounds */
+            .card {
+                background: white !important;
+                border: 1px solid var(--border) !important;
+                box-shadow: none !important;
+                transform: none !important;
+                break-inside: avoid;
+            }
+
+            .card-icon {
+                background: var(--primary) !important;
+                float: right;
+                margin: 0 0 0.5rem 0.75rem !important;
+                width: 36px !important;
+                height: 36px !important;
+                font-size: 1rem !important;
+            }
+
+            .card-icon.blue { background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important; }
+            .card-icon.teal { background: linear-gradient(135deg, var(--primary-light), var(--accent)) !important; }
+            .card-icon.green { background: linear-gradient(135deg, var(--success), #0BC98A) !important; }
+            .card-icon.orange { background: linear-gradient(135deg, var(--warning), #FFB84D) !important; }
+
+            /* Comparison boxes */
+            .comparison-box.before {
+                background: #FFF5F5 !important;
+                border: 2px solid #FEC8C8 !important;
+            }
+            .comparison-box.after {
+                background: #F0FFF4 !important;
+                border: 2px solid #9AE6B4 !important;
+            }
+
+            /* Timeline */
+            .timeline::before {
+                background: linear-gradient(to bottom, var(--primary), var(--accent), var(--success), var(--warning)) !important;
+            }
+            .timeline-dot.phase1 { background: var(--primary) !important; }
+            .timeline-dot.phase2 { background: var(--accent) !important; }
+            .timeline-dot.phase3 { background: var(--success) !important; }
+            .timeline-dot.phase4 { background: var(--warning) !important; }
+
+            .timeline-content {
+                break-inside: avoid;
+            }
+
+            .timeline-badge.beta { background: rgba(0, 119, 182, 0.1) !important; }
+            .timeline-badge.mvp { background: rgba(72, 202, 228, 0.15) !important; }
+            .timeline-badge.future { background: rgba(6, 214, 160, 0.1) !important; }
+            .timeline-badge.vision { background: rgba(255, 159, 28, 0.1) !important; }
+
+            /* Architecture stack */
+            .arch-l1 { background: var(--primary) !important; color: white !important; }
+            .arch-l2 { background: var(--primary-light) !important; color: white !important; }
+            .arch-l3 { background: var(--accent) !important; }
+            .arch-l4 { background: var(--accent-light) !important; }
+            .arch-l5 { background: var(--bg-dark) !important; }
+
+            /* Diagram containers */
+            .diagram-container {
+                break-inside: avoid;
+                background: white !important;
+                border: 1px solid var(--border) !important;
+            }
+
+            /* Investment cards */
+            .investment-card {
+                break-inside: avoid;
+                background: white !important;
+            }
+            .investment-card.featured {
+                border-color: var(--primary) !important;
+            }
+
+            /* Data table header */
+            .data-table th {
+                background: var(--bg-alt) !important;
+            }
+
+            /* Stats bar in vision section */
+            .stat {
+                background: rgba(255,255,255,0.08) !important;
+                border: 1px solid rgba(255,255,255,0.15) !important;
+            }
+
+            /* Vision icons */
+            .vision-stage:nth-child(1) .vision-icon { background: rgba(0, 119, 182, 0.2) !important; }
+            .vision-stage:nth-child(2) .vision-icon { background: rgba(6, 214, 160, 0.2) !important; }
+            .vision-stage:nth-child(3) .vision-icon { background: rgba(255, 159, 28, 0.2) !important; }
+
+            /* Highlight boxes */
+            .highlight-box {
+                background: linear-gradient(135deg, rgba(0, 119, 182, 0.05), rgba(72, 202, 228, 0.08)) !important;
+                border-left: 4px solid var(--primary) !important;
+            }
+
+            /* Section labels */
+            .section-label {
+                background: rgba(0, 119, 182, 0.08) !important;
+                letter-spacing: 0.08em !important;
+                word-spacing: 0 !important;
+            }
+            .bg-dark .section-label {
+                background: rgba(72, 202, 228, 0.15) !important;
+            }
+
+            /* Pipeline icons */
+            .pipeline-icon {
+                background: var(--primary) !important;
+            }
+
+            /* Metrics */
+            .metric {
+                background: white !important;
+                border: 1px solid var(--border) !important;
+            }
+
+            /* Data source cards */
+            .data-source {
+                break-inside: avoid;
+                background: white !important;
+            }
+
+            .data-source-icon {
+                background: var(--bg-alt) !important;
+            }
+
+            /* CTA section */
+            .cta-section {
+                background: linear-gradient(135deg, var(--dark) 0%, var(--primary-dark) 100%) !important;
+                color: white !important;
+                break-before: page;
+            }
+            .cta-section h2 { color: white !important; }
+            .cta-section p { color: rgba(255,255,255,0.6) !important; }
+
+            /* Comparison badges */
+            .before .comparison-badge { background: #FEB2B2 !important; }
+            .after .comparison-badge { background: #9AE6B4 !important; }
+
+            /* Cost free label */
+            .cost-free { color: var(--success) !important; }
+
+            /* Hide hover effects */
+            .card:hover { transform: none !important; }
+            .cta-button:hover { transform: none !important; }
+
+            /* Page breaks */
+            .bg-alt, .bg-dark { break-inside: avoid; }
+            h2, h3 { break-after: avoid; }
+
+            /* Each major section starts on a new page (except cover + exec summary) */
+            .print-page-break { break-before: page; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .cover h1 { font-size: 2.25rem; }
+            .comparison { grid-template-columns: 1fr; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .vision-stages { grid-template-columns: 1fr; }
+            .vision-stage:not(:last-child)::after { display: none; }
+            .data-sources-grid { grid-template-columns: 1fr; }
+            .cover-meta { flex-direction: column; gap: 0.5rem; }
+            .pipeline { gap: 0.5rem; }
+            .metric-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     COVER
+     ════════════════════════════════════════════════════════════════ -->
+<section class="cover">
+    <div class="cover-content">
+        <div class="cover-logo">
+            <i class="fas fa-paper-plane"></i>
+            LittleRipper_Projects
+        </div>
+        <h1>Drone Project Management &<br><span>Intelligent Survey Planning</span></h1>
+        <p class="cover-subtitle">A proposal for Ripper Corp's next-generation mission planning platform</p>
+        <div class="cover-meta">
+            <span><i class="far fa-calendar"></i> June 2026</span>
+            <span><i class="far fa-file-lines"></i> Technical &amp; Commercial Proposal</span>
+            <span><i class="fas fa-lock"></i> Confidential</span>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     EXECUTIVE SUMMARY
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+    <div class="section-label">Executive Summary</div>
+    <h2>From Manual Planning to<br>Intelligent Automation</h2>
+    <p class="lead">
+        Ripper Corp's current survey planning workflow relies on manual polygon subdivision,
+        spreadsheet-based costing, and experience-driven field logistics. This proposal outlines
+        a platform that doesn't just automate that workflow &mdash; it makes it <strong>intelligent</strong>.
+    </p>
+
+    <div class="highlight-box">
+        <p>
+            <strong>Our approach goes beyond the brief.</strong> Rather than simply dividing survey areas
+            into geometric grid squares, we integrate real cadastral boundaries, property fence lines,
+            and access roads to create flight zones that reflect how land actually works. The result is
+            a tool that produces not just flight plans, but <strong>complete project cost estimates</strong>
+            &mdash; from accommodation to per-diem &mdash; in minutes instead of hours.
+        </p>
+    </div>
+
+    <div class="pipeline">
+        <div class="pipeline-step">
+            <div class="pipeline-icon"><i class="fas fa-upload"></i></div>
+            <div class="pipeline-label">Upload<br>Boundary</div>
+        </div>
+        <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="pipeline-step">
+            <div class="pipeline-icon"><i class="fas fa-table-cells"></i></div>
+            <div class="pipeline-label">Smart<br>Subdivision</div>
+        </div>
+        <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="pipeline-step">
+            <div class="pipeline-icon"><i class="fas fa-dollar-sign"></i></div>
+            <div class="pipeline-label">Auto<br>Costing</div>
+        </div>
+        <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="pipeline-step">
+            <div class="pipeline-icon"><i class="fas fa-helicopter"></i></div>
+            <div class="pipeline-label">Field<br>Deploy</div>
+        </div>
+        <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="pipeline-step">
+            <div class="pipeline-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="pipeline-label">Data<br>Feedback</div>
+        </div>
+    </div>
+
+    <div class="metric-row">
+        <div class="metric">
+            <div class="metric-value">90%</div>
+            <div class="metric-label">Reduction in Planning Time</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value">2 wk</div>
+            <div class="metric-label">To Working Beta</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value">$0</div>
+            <div class="metric-label">Data Licence Fees</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value">100%</div>
+            <div class="metric-label">Coverage — Zero Gaps</div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     UNDERSTANDING REQUIREMENTS
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section bg-alt print-page-break">
+    <div class="section-label">Understanding Your Requirements</div>
+    <h2>What You Asked For</h2>
+    <p class="lead">
+        We've studied your Product Requirements Document in detail. The core need is clear:
+        transform client-supplied KML/SHP boundaries into optimised, flight-ready polygons
+        with integrated GCP planning and field navigation &mdash; for large-scale projects
+        exceeding 1,000 hectares.
+    </p>
+
+    <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="card">
+            <div class="card-icon blue"><i class="fas fa-draw-polygon"></i></div>
+            <h4>Automated Grid Generation</h4>
+            <p>Transform boundary files into overlapping flight polygons with configurable cell sizes, shapes, and overlap margins. Handle irregular boundaries with intelligent clipping.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon teal"><i class="fas fa-gauge-high"></i></div>
+            <h4>Flight Feasibility Engine</h4>
+            <p>Real-time assessment of flight time, battery usage, and operational safety per polygon. Colour-coded visual feedback: green (safe), orange (marginal), red (exceeds limits).</p>
+        </div>
+        <div class="card">
+            <div class="card-icon green"><i class="fas fa-crosshairs"></i></div>
+            <h4>GCP &amp; CHK Planning</h4>
+            <p>Automated ground control point placement at grid vertices and polygon centres, with manual refinement. Check point placement for quality assurance.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon orange"><i class="fas fa-route"></i></div>
+            <h4>Navigation &amp; Export</h4>
+            <p>Optimised field navigation paths for GCP placement crews. Unified KML export package compatible with DJI RC and field navigation apps.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     BEYOND THE BRIEF — THE KEY SELLING SECTION
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section print-page-break">
+    <div class="section-label">Our Approach</div>
+    <h2>Beyond the Brief &mdash; Intelligent Planning</h2>
+    <p class="lead">
+        Grid-based subdivision is a starting point, not a solution. Real survey areas are
+        divided by fences, roads, and property boundaries that determine where you can actually
+        fly and how you access the land. Our platform understands this.
+    </p>
+
+    <!-- ── Comparison Diagram ── -->
+    <div class="comparison">
+        <div class="comparison-box before">
+            <h4 style="color: #C53030;"><span class="comparison-badge" style="vertical-align: middle; margin-right: 0.5rem;">Traditional</span> Geometric Grid Overlay</h4>
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Boundary shape -->
+                <path d="M40,60 L200,30 L370,70 L380,180 L340,260 L180,280 L50,240 L20,150 Z"
+                      fill="#FEE2E2" stroke="#C53030" stroke-width="2" stroke-dasharray="6,3"/>
+                <!-- Grid lines - vertical -->
+                <line x1="100" y1="20" x2="100" y2="290" stroke="#E53E3E" stroke-width="1" opacity="0.5"/>
+                <line x1="180" y1="20" x2="180" y2="290" stroke="#E53E3E" stroke-width="1" opacity="0.5"/>
+                <line x1="260" y1="20" x2="260" y2="290" stroke="#E53E3E" stroke-width="1" opacity="0.5"/>
+                <line x1="340" y1="20" x2="340" y2="290" stroke="#E53E3E" stroke-width="1" opacity="0.5"/>
+                <!-- Grid lines - horizontal -->
+                <line x1="10" y1="80" x2="390" y2="80" stroke="#E53E3E" stroke-width="1" opacity="0.5"/>
+                <line x1="10" y1="150" x2="390" y2="150" stroke="#E53E3E" stroke-width="1" opacity="0.5"/>
+                <line x1="10" y1="220" x2="390" y2="220" stroke="#E53E3E" stroke-width="1" opacity="0.5"/>
+                <!-- Problem markers -->
+                <circle cx="60" cy="65" r="14" fill="#FC8181" stroke="#C53030" stroke-width="1.5"/>
+                <text x="60" y="70" text-anchor="middle" font-size="12" fill="#C53030" font-weight="bold">!</text>
+                <circle cx="360" cy="75" r="14" fill="#FC8181" stroke="#C53030" stroke-width="1.5"/>
+                <text x="360" y="80" text-anchor="middle" font-size="12" fill="#C53030" font-weight="bold">!</text>
+                <circle cx="45" cy="240" r="14" fill="#FC8181" stroke="#C53030" stroke-width="1.5"/>
+                <text x="45" y="245" text-anchor="middle" font-size="12" fill="#C53030" font-weight="bold">!</text>
+                <circle cx="345" cy="255" r="14" fill="#FC8181" stroke="#C53030" stroke-width="1.5"/>
+                <text x="345" y="260" text-anchor="middle" font-size="12" fill="#C53030" font-weight="bold">!</text>
+                <!-- Labels -->
+                <text x="200" y="160" text-anchor="middle" font-size="11" fill="#9B2C2C" font-weight="600">Ignores fence lines</text>
+                <text x="200" y="178" text-anchor="middle" font-size="11" fill="#9B2C2C" font-weight="600">Creates orphan polygons</text>
+                <text x="200" y="196" text-anchor="middle" font-size="11" fill="#9B2C2C" font-weight="600">No access awareness</text>
+            </svg>
+        </div>
+        <div class="comparison-box after">
+            <h4 style="color: #276749;"><span class="comparison-badge" style="vertical-align: middle; margin-right: 0.5rem;">Our Approach</span> Cadastral-Aware</h4>
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Boundary shape -->
+                <path d="M40,60 L200,30 L370,70 L380,180 L340,260 L180,280 L50,240 L20,150 Z"
+                      fill="#F0FFF4" stroke="#276749" stroke-width="2"/>
+                <!-- Cadastral/fence lines (organic, following land features) -->
+                <path d="M40,60 L120,155 L50,240" stroke="#38A169" stroke-width="2" fill="none"/>
+                <path d="M120,155 L260,140" stroke="#38A169" stroke-width="2" fill="none"/>
+                <path d="M200,30 L260,140 L370,70" stroke="#38A169" stroke-width="2" fill="none"/>
+                <path d="M260,140 L340,260" stroke="#38A169" stroke-width="2" fill="none"/>
+                <path d="M120,155 L180,280" stroke="#38A169" stroke-width="2" fill="none"/>
+                <!-- Road (dashed) -->
+                <path d="M20,150 L120,155 L260,140 L380,180" stroke="#805AD5" stroke-width="2.5" stroke-dasharray="8,4" fill="none"/>
+                <!-- Zone fills -->
+                <path d="M40,60 L200,30 L260,140 L120,155 Z" fill="rgba(72,187,120,0.15)"/>
+                <path d="M200,30 L370,70 L260,140 Z" fill="rgba(56,161,105,0.15)"/>
+                <path d="M260,140 L370,70 L380,180 L340,260 Z" fill="rgba(72,187,120,0.15)"/>
+                <path d="M120,155 L260,140 L340,260 L180,280 Z" fill="rgba(56,161,105,0.15)"/>
+                <path d="M40,60 L120,155 L50,240 L20,150 Z" fill="rgba(72,187,120,0.15)"/>
+                <path d="M50,240 L120,155 L180,280 Z" fill="rgba(56,161,105,0.15)"/>
+                <!-- Gate markers -->
+                <rect x="112" y="147" width="16" height="16" rx="3" fill="#805AD5"/>
+                <text x="120" y="159" text-anchor="middle" font-size="10" fill="white" font-weight="bold">G</text>
+                <rect x="252" y="132" width="16" height="16" rx="3" fill="#805AD5"/>
+                <text x="260" y="144" text-anchor="middle" font-size="10" fill="white" font-weight="bold">G</text>
+                <!-- GCP markers -->
+                <circle cx="200" cy="30" r="5" fill="#DD6B20"/>
+                <circle cx="120" cy="155" r="5" fill="#DD6B20"/>
+                <circle cx="260" cy="140" r="5" fill="#DD6B20"/>
+                <circle cx="340" cy="260" r="5" fill="#DD6B20"/>
+                <circle cx="180" cy="280" r="5" fill="#DD6B20"/>
+                <!-- Legend -->
+                <rect x="20" y="270" width="8" height="3" fill="#805AD5"/>
+                <text x="32" y="274" font-size="8" fill="#4A5568">Access road</text>
+                <rect x="90" y="269" width="10" height="10" rx="2" fill="#805AD5"/>
+                <text x="104" y="277" font-size="8" fill="#4A5568">Gates</text>
+                <circle cx="152" cy="274" r="4" fill="#DD6B20"/>
+                <text x="160" y="277" font-size="8" fill="#4A5568">Smart GCPs</text>
+                <line x1="210" y1="274" x2="225" y2="274" stroke="#38A169" stroke-width="2"/>
+                <text x="230" y="277" font-size="8" fill="#4A5568">Fence lines</text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ── Three Pillars ── -->
+    <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="card" style="border-top: 3px solid var(--primary);">
+            <div class="card-icon blue"><i class="fas fa-map-location-dot"></i></div>
+            <h4>Land-Aware Subdivision</h4>
+            <p>
+                We integrate cadastral data, OpenStreetMap (roads, tracks, fence lines), and elevation data to subdivide along real-world features. Flight zones follow property boundaries &mdash; not arbitrary grid lines.
+            </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--success);">
+            <div class="card-icon green"><i class="fas fa-file-invoice-dollar"></i></div>
+            <h4>Integrated Project Costing</h4>
+            <p>
+                The tool doesn't just plan &mdash; it costs. Select a deliverable
+                (raw imagery, orthomosaic, LiDAR, annotated maps), and the system calculates
+                crew days, travel, accommodation, per diem, and processing to produce a
+                complete project quote.
+            </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--warning);">
+            <div class="card-icon orange"><i class="fas fa-diamond-turn-right"></i></div>
+            <h4>Real-World Navigation</h4>
+            <p>
+                A* pathfinding routes field operators along actual roads, through gates,
+                and around obstacles. Not theoretical straight-line paths through fences &mdash;
+                actual routes a crew would drive or walk, with terrain-aware time estimates.
+            </p>
+        </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top: 2rem;">
+        <p>
+            <i class="fas fa-shield-halved" style="color: var(--primary); margin-right: 0.5rem;"></i>
+            <strong>Airspace Safety:</strong> All flight plans are overlaid against OpenAir Australian airspace data.
+            The system flags restricted zones, controlled airspace, and height ceilings before
+            a mission is finalised &mdash; keeping operations compliant without manual NOTAM checks.
+        </p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PHASED DELIVERY
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section bg-alt print-page-break">
+    <div class="section-label">Delivery Roadmap</div>
+    <h2>Phased Delivery &mdash; Value at Every Stage</h2>
+    <p class="lead">
+        We deliver working software from week two. Each phase builds on the last, with
+        the core planning intelligence front-loaded into the beta.
+    </p>
+
+    <div class="timeline">
+        <!-- Phase 1: Beta -->
+        <div class="timeline-item">
+            <div class="timeline-dot phase1"></div>
+            <div class="timeline-content">
+                <div class="timeline-header">
+                    <h3 style="margin-bottom: 0;">Phase 1: Working Beta</h3>
+                    <span class="timeline-badge beta">~2 Weeks</span>
+                </div>
+                <p style="color: var(--text-light); font-size: 0.95rem;">
+                    A functional demonstration of the core intelligence &mdash; upload a boundary and see it
+                    subdivided using real cadastral data, with flight feasibility and smart GCP placement.
+                </p>
+                <ul class="feature-list">
+                    <li class="highlight">Cadastral-aware boundary subdivision (the key differentiator)</li>
+                    <li class="highlight">Intelligent GCP auto-placement at accessible locations</li>
+                    <li>Boundary ingestion &mdash; KML &amp; SHP upload, validation, preview</li>
+                    <li>Interactive grid controls &mdash; drag, rotate, resize on map</li>
+                    <li>Flight feasibility engine with colour-coded feedback</li>
+                    <li>Real-time information panel (area, polygons, flight hours, days)</li>
+                    <li>Basic KML export (DJI compatible)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 2: MVP -->
+        <div class="timeline-item">
+            <div class="timeline-dot phase2"></div>
+            <div class="timeline-content">
+                <div class="timeline-header">
+                    <h3 style="margin-bottom: 0;">Phase 2: Production MVP</h3>
+                    <span class="timeline-badge mvp">+3 Weeks</span>
+                </div>
+                <p style="color: var(--text-light); font-size: 0.95rem;">
+                    The complete planning and costing tool &mdash; everything a project manager needs
+                    to go from boundary file to project quote and field deployment package.
+                </p>
+                <ul class="feature-list">
+                    <li class="highlight">Project costing engine with product catalogue</li>
+                    <li class="highlight">A* field navigation routing (real roads, gates, access)</li>
+                    <li class="highlight">Logistics costing &mdash; auto-find accommodation, travel, per diem</li>
+                    <li>Full polygon editing &mdash; vertex editing, merge orphan polygons</li>
+                    <li>CHK point placement</li>
+                    <li>Terrain classification for productivity rates (flat / moderate / hilly)</li>
+                    <li>User authentication, project save/load &amp; Windows/macOS desktop builds</li>
+                    <li>Unified field package export (flight polygons + GCPs + CHKs + nav path)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 3: Field Ops -->
+        <div class="timeline-item">
+            <div class="timeline-dot phase3"></div>
+            <div class="timeline-content">
+                <div class="timeline-header">
+                    <h3 style="margin-bottom: 0;">Phase 3: Field Operations</h3>
+                    <span class="timeline-badge future">+4 Weeks</span>
+                </div>
+                <p style="color: var(--text-light); font-size: 0.95rem;">
+                    Extend the platform from the office to the field with mobile apps
+                    for operators and pilots.
+                </p>
+                <ul class="feature-list">
+                    <li class="highlight">Companion mobile app (iOS &amp; Android) &mdash; offline-first</li>
+                    <li>Per-operator task assignments and progress tracking</li>
+                    <li>Navigate to GCPs, mark as placed, track completed areas</li>
+                    <li>Optimal takeoff location recommendations (line-of-sight aware)</li>
+                    <li>DJI controller flight app &mdash; pull flight plans, auto-mark completed areas</li>
+                    <li class="highlight">Real operational data feeds back to improve costing accuracy</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 4: Platform -->
+        <div class="timeline-item">
+            <div class="timeline-dot phase4"></div>
+            <div class="timeline-content">
+                <div class="timeline-header">
+                    <h3 style="margin-bottom: 0;">Phase 4: Client Platform</h3>
+                    <span class="timeline-badge vision">+4 Weeks</span>
+                </div>
+                <p style="color: var(--text-light); font-size: 0.95rem;">
+                    The tool becomes a sales channel. Clients self-serve quotes,
+                    operators get matched to jobs, and the platform learns from every deployment.
+                </p>
+                <ul class="feature-list">
+                    <li class="highlight">Client self-service portal &mdash; draw an area, get an instant quote</li>
+                    <li>Automatic operator matching based on proximity</li>
+                    <li>AI gate detection from aerial imagery</li>
+                    <li>Data flywheel &mdash; every job improves cost estimate accuracy</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PRODUCT COSTING ENGINE (detail section)
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section print-page-break">
+    <div class="section-label">Costing Engine</div>
+    <h2>From Flight Plan to Project Quote</h2>
+    <p class="lead">
+        The costing engine turns operational metrics into dollar figures.
+        The client selects a deliverable, and the system calculates every component of the cost.
+    </p>
+
+    <div class="diagram-container">
+        <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg">
+            <!-- Product Selection -->
+            <rect x="20" y="30" width="180" height="280" rx="12" fill="#F0F7FA" stroke="#D1E3EB" stroke-width="1.5"/>
+            <text x="110" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#0D1B2A">PRODUCT CATALOGUE</text>
+            <rect x="35" y="75" width="150" height="32" rx="6" fill="white" stroke="#0077B6" stroke-width="1.5"/>
+            <text x="110" y="96" text-anchor="middle" font-size="10" fill="#0077B6" font-weight="600">Raw Imagery</text>
+            <rect x="35" y="117" width="150" height="32" rx="6" fill="white" stroke="#D1E3EB" stroke-width="1"/>
+            <text x="110" y="138" text-anchor="middle" font-size="10" fill="#5A6C7E">Orthomosaic</text>
+            <rect x="35" y="159" width="150" height="32" rx="6" fill="white" stroke="#D1E3EB" stroke-width="1"/>
+            <text x="110" y="180" text-anchor="middle" font-size="10" fill="#5A6C7E">LiDAR Point Cloud</text>
+            <rect x="35" y="201" width="150" height="32" rx="6" fill="white" stroke="#D1E3EB" stroke-width="1"/>
+            <text x="110" y="222" text-anchor="middle" font-size="10" fill="#5A6C7E">Annotated Maps</text>
+            <rect x="35" y="243" width="150" height="32" rx="6" fill="white" stroke="#D1E3EB" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="110" y="264" text-anchor="middle" font-size="10" fill="#5A6C7E" font-style="italic">Custom Product...</text>
+            <text x="110" y="298" text-anchor="middle" font-size="9" fill="#5A6C7E">Product drives payload,</text>
+            <text x="110" y="310" text-anchor="middle" font-size="9" fill="#5A6C7E">altitude &amp; overlap</text>
+
+            <!-- Arrow -->
+            <path d="M210,170 L250,170" stroke="#0077B6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+            <defs>
+                <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L8,3 L0,6" fill="#0077B6"/>
+                </marker>
+            </defs>
+
+            <!-- Calculation Engine -->
+            <rect x="260" y="30" width="280" height="280" rx="12" fill="#0077B6" stroke="none"/>
+            <text x="400" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="white">CALCULATION ENGINE</text>
+
+            <rect x="275" y="72" width="250" height="28" rx="5" fill="rgba(255,255,255,0.15)"/>
+            <text x="290" y="91" font-size="10" fill="rgba(255,255,255,0.9)"><tspan font-weight="600">Flight Ops:</tspan> area/hr x polygons x turnaround</text>
+
+            <rect x="275" y="108" width="250" height="28" rx="5" fill="rgba(255,255,255,0.15)"/>
+            <text x="290" y="127" font-size="10" fill="rgba(255,255,255,0.9)"><tspan font-weight="600">GCP Ops:</tspan> points x rate/hr (terrain-adjusted)</text>
+
+            <rect x="275" y="144" width="250" height="28" rx="5" fill="rgba(255,255,255,0.15)"/>
+            <text x="290" y="163" font-size="10" fill="rgba(255,255,255,0.9)"><tspan font-weight="600">Travel:</tspan> nearest town, distance, drive time</text>
+
+            <rect x="275" y="180" width="250" height="28" rx="5" fill="rgba(255,255,255,0.15)"/>
+            <text x="290" y="199" font-size="10" fill="rgba(255,255,255,0.9)"><tspan font-weight="600">Accommodation:</tspan> nights x rate + per diem</text>
+
+            <rect x="275" y="216" width="250" height="28" rx="5" fill="rgba(255,255,255,0.15)"/>
+            <text x="290" y="235" font-size="10" fill="rgba(255,255,255,0.9)"><tspan font-weight="600">Processing:</tspan> ha x processing cost/ha</text>
+
+            <rect x="275" y="252" width="250" height="28" rx="5" fill="rgba(255,255,255,0.15)"/>
+            <text x="290" y="271" font-size="10" fill="rgba(255,255,255,0.9)"><tspan font-weight="600">Equipment:</tspan> drone + payload day rates</text>
+
+            <text x="400" y="303" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)">Terrain-aware: 10 GCPs/hr flat, 6/hr hilly</text>
+
+            <!-- Arrow -->
+            <path d="M550,170 L590,170" stroke="#06D6A0" stroke-width="2" marker-end="url(#arrowGreen)"/>
+            <defs>
+                <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L8,3 L0,6" fill="#06D6A0"/>
+                </marker>
+            </defs>
+
+            <!-- Output -->
+            <rect x="600" y="30" width="280" height="280" rx="12" fill="#F0FFF4" stroke="#9AE6B4" stroke-width="1.5"/>
+            <text x="740" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#276749">PROJECT QUOTE</text>
+
+            <text x="620" y="88" font-size="10" fill="#5A6C7E">Flight Operations</text>
+            <text x="860" y="88" text-anchor="end" font-size="10" fill="#276749" font-weight="600" font-family="JetBrains Mono, monospace">$XX,XXX</text>
+            <line x1="620" y1="98" x2="860" y2="98" stroke="#E2E8F0" stroke-width="1"/>
+
+            <text x="620" y="118" font-size="10" fill="#5A6C7E">Ground Control (GCP/CHK)</text>
+            <text x="860" y="118" text-anchor="end" font-size="10" fill="#276749" font-weight="600" font-family="JetBrains Mono, monospace">$XX,XXX</text>
+            <line x1="620" y1="128" x2="860" y2="128" stroke="#E2E8F0" stroke-width="1"/>
+
+            <text x="620" y="148" font-size="10" fill="#5A6C7E">Travel &amp; Mobilisation</text>
+            <text x="860" y="148" text-anchor="end" font-size="10" fill="#276749" font-weight="600" font-family="JetBrains Mono, monospace">$X,XXX</text>
+            <line x1="620" y1="158" x2="860" y2="158" stroke="#E2E8F0" stroke-width="1"/>
+
+            <text x="620" y="178" font-size="10" fill="#5A6C7E">Accommodation &amp; Per Diem</text>
+            <text x="860" y="178" text-anchor="end" font-size="10" fill="#276749" font-weight="600" font-family="JetBrains Mono, monospace">$X,XXX</text>
+            <line x1="620" y1="188" x2="860" y2="188" stroke="#E2E8F0" stroke-width="1"/>
+
+            <text x="620" y="208" font-size="10" fill="#5A6C7E">Data Processing</text>
+            <text x="860" y="208" text-anchor="end" font-size="10" fill="#276749" font-weight="600" font-family="JetBrains Mono, monospace">$XX,XXX</text>
+            <line x1="620" y1="218" x2="860" y2="218" stroke="#E2E8F0" stroke-width="1"/>
+
+            <text x="620" y="238" font-size="10" fill="#5A6C7E">Equipment</text>
+            <text x="860" y="238" text-anchor="end" font-size="10" fill="#276749" font-weight="600" font-family="JetBrains Mono, monospace">$X,XXX</text>
+            <line x1="620" y1="250" x2="860" y2="250" stroke="#276749" stroke-width="2"/>
+
+            <text x="620" y="274" font-size="13" fill="#276749" font-weight="700">Total Project Cost</text>
+            <text x="860" y="274" text-anchor="end" font-size="13" fill="#276749" font-weight="700" font-family="JetBrains Mono, monospace">$XXX,XXX</text>
+
+            <text x="740" y="303" text-anchor="middle" font-size="9" fill="#5A6C7E">Exportable as PDF quote</text>
+        </svg>
+        <div class="diagram-caption">
+            Product selection cascades through the calculation engine to produce a complete project quote in minutes.
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     TECHNICAL ARCHITECTURE
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section bg-alt print-page-break">
+    <div class="section-label">Technical Architecture</div>
+    <h2>Built for Performance &amp; Scale</h2>
+    <p class="lead">
+        A cross-platform desktop application backed by a high-performance Rust API,
+        with best-in-class web mapping libraries for the interactive GIS layer.
+    </p>
+
+    <div class="arch-stack">
+        <div class="arch-layer arch-l1">
+            <i class="fas fa-display"></i>&ensp;Flutter Desktop Application
+            <span class="arch-sub">Cross-platform UI &mdash; Windows, macOS, Web &bull; Single codebase</span>
+        </div>
+        <div class="arch-layer arch-l2">
+            <i class="fas fa-map"></i>&ensp;Interactive Map Engine (WebView)
+            <span class="arch-sub">Mapbox GL JS + OpenLayers + Turf.js &bull; Drag, rotate, resize, clip</span>
+        </div>
+        <div class="arch-layer arch-l3">
+            <i class="fas fa-server"></i>&ensp;Rust Backend API
+            <span class="arch-sub">High-performance geometry processing &bull; Auth &bull; Project management</span>
+        </div>
+        <div class="arch-layer arch-l4">
+            <i class="fas fa-database"></i>&ensp;PostgreSQL + PostGIS
+            <span class="arch-sub">Spatial database &bull; Polygon operations &bull; Spatial indexing</span>
+        </div>
+        <div class="arch-layer arch-l5">
+            <i class="fas fa-layer-group"></i>&ensp;Data Integration Layer
+            <span class="arch-sub">State Cadastral WFS &bull; OpenStreetMap &bull; OpenAir &bull; SRTM Elevation</span>
+        </div>
+    </div>
+
+    <div style="margin-top: 3rem;">
+        <h3>Why This Stack?</h3>
+        <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="card">
+                <h4><i class="fab fa-flutter" style="color: #02569B;"></i>&ensp;Flutter</h4>
+                <p>Single codebase for Windows, macOS, and web. Future mobile apps (companion, DJI controller) come free. Proven in our prior GCS build &mdash; 35+ screens, cross-platform.</p>
+            </div>
+            <div class="card">
+                <h4><i class="fab fa-rust" style="color: #CE422B;"></i>&ensp;Rust</h4>
+                <p>Memory-safe, zero-cost abstractions, and extreme performance for geometry processing. Handles polygon clipping and spatial operations on multi-thousand hectare datasets without breaking a sweat.</p>
+            </div>
+            <div class="card">
+                <h4><i class="fas fa-globe" style="color: var(--primary);"></i>&ensp;Web GIS</h4>
+                <p>Mapbox GL JS and Turf.js are the industry standard for interactive geospatial applications. Embedded via WebView, giving us the full power of the web mapping ecosystem inside a native app shell.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     DATA SOURCES
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section print-page-break">
+    <div class="section-label">Data Integration</div>
+    <h2>Australia-Wide Data &mdash; Zero Licence Fees</h2>
+    <p class="lead">
+        Every data source in the MVP is publicly available at no cost.
+        We integrate state government cadastral services, open mapping data,
+        and aviation datasets to build a complete operational picture.
+    </p>
+
+    <div class="data-sources-grid">
+        <div class="data-source">
+            <div class="data-source-icon"><i class="fas fa-map-pin"></i></div>
+            <div>
+                <h4>State Cadastral Services</h4>
+                <p>Property boundaries from all 8 state/territory WFS APIs &mdash; NSW Spatial Services, QLD QSpatial, VIC DELWP, WA Landgate, SA DataSA, TAS LIST, NT Open Data, ACT ACTmapi.</p>
+            </div>
+        </div>
+        <div class="data-source">
+            <div class="data-source-icon"><i class="fas fa-road"></i></div>
+            <div>
+                <h4>OpenStreetMap</h4>
+                <p>Roads, tracks, fence lines, gates, and land features via Overpass API. Community-maintained and continuously updated.</p>
+            </div>
+        </div>
+        <div class="data-source">
+            <div class="data-source-icon"><i class="fas fa-plane-up"></i></div>
+            <div>
+                <h4>OpenAir Airspace</h4>
+                <p>Australian controlled airspace, restricted zones, danger areas, and altitude ceilings. Visual overlay with automatic safety warnings.</p>
+            </div>
+        </div>
+        <div class="data-source">
+            <div class="data-source-icon"><i class="fas fa-mountain"></i></div>
+            <div>
+                <h4>SRTM / GA Elevation</h4>
+                <p>Shuttle Radar Topography Mission and Geoscience Australia DEM data for terrain classification. Drives terrain-aware productivity rates in the costing engine.</p>
+            </div>
+        </div>
+        <div class="data-source">
+            <div class="data-source-icon"><i class="fas fa-map"></i></div>
+            <div>
+                <h4>Mapbox Satellite</h4>
+                <p>High-resolution satellite imagery and vector map tiles for the interactive planning canvas. Free tier covers development; scalable pricing for production.</p>
+            </div>
+        </div>
+        <div class="data-source">
+            <div class="data-source-icon"><i class="fas fa-drone"></i></div>
+            <div>
+                <h4>DJI Aircraft Database</h4>
+                <p>Specifications for supported aircraft and payloads (M400, L3 LiDAR, RGB cameras, etc.). Battery capacity, flight endurance, and coverage rate parameters.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     INVESTMENT
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section bg-alt print-page-break">
+    <div class="section-label">Investment</div>
+    <h2>Commercial Terms</h2>
+    <p class="lead">
+        We propose a time &amp; materials engagement, giving Ripper Corp full visibility
+        into progress and the flexibility to steer priorities as the product takes shape.
+    </p>
+
+    <div class="investment-card featured">
+        <div class="investment-header">
+            <div>
+                <h3 style="margin-bottom: 0.25rem;">Development — Time &amp; Materials</h3>
+                <p style="color: var(--text-light); margin-bottom: 0; font-size: 0.95rem;">
+                    Ripper Corp owns all intellectual property produced.
+                </p>
+            </div>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Phase</th>
+                    <th>Scope</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Phase 1 &mdash; Beta</strong></td>
+                    <td>Core planning with cadastral intelligence, GCP placement, feasibility engine</td>
+                    <td>~2 weeks</td>
+                </tr>
+                <tr>
+                    <td><strong>Phase 2 &mdash; MVP</strong></td>
+                    <td>Full costing engine, A* navigation, polygon editing, auth, desktop builds</td>
+                    <td>+3 weeks</td>
+                </tr>
+                <tr>
+                    <td><strong>Phase 3 &mdash; Field Ops</strong></td>
+                    <td>Companion mobile app, DJI controller integration, data feedback loop</td>
+                    <td>+4 weeks</td>
+                </tr>
+                <tr>
+                    <td><strong>Phase 4 &mdash; Platform</strong></td>
+                    <td>Client self-service portal, operator marketplace, AI gate detection</td>
+                    <td>+4 weeks</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="investment-card">
+        <div class="investment-header">
+            <div>
+                <h3 style="margin-bottom: 0.25rem;">Infrastructure Costs</h3>
+                <p style="color: var(--text-light); margin-bottom: 0; font-size: 0.95rem;">
+                    Ongoing monthly costs for hosting and services. Minimal at launch, scales with usage.
+                </p>
+            </div>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Purpose</th>
+                    <th>Estimated Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cloud Hosting (Rust API)</td>
+                    <td>Backend API, authentication, project storage</td>
+                    <td>~$30 &ndash; 80 /month</td>
+                </tr>
+                <tr>
+                    <td>PostgreSQL + PostGIS</td>
+                    <td>Spatial database</td>
+                    <td>~$20 /month (managed)</td>
+                </tr>
+                <tr>
+                    <td>Mapbox</td>
+                    <td>Map tiles &amp; satellite imagery</td>
+                    <td>Free tier &rarr; ~$250/mo at scale</td>
+                </tr>
+                <tr>
+                    <td>Domain + SSL</td>
+                    <td>Web presence &amp; security</td>
+                    <td>~$50 /year</td>
+                </tr>
+                <tr>
+                    <td>State Cadastral APIs</td>
+                    <td>Property boundary data</td>
+                    <td class="cost-free">Free (public WFS)</td>
+                </tr>
+                <tr>
+                    <td>OpenStreetMap</td>
+                    <td>Roads, tracks, fence lines</td>
+                    <td class="cost-free">Free (open data)</td>
+                </tr>
+                <tr>
+                    <td>OpenAir / SRTM</td>
+                    <td>Airspace &amp; elevation data</td>
+                    <td class="cost-free">Free (open data)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     THE VISION
+     ════════════════════════════════════════════════════════════════ -->
+<section class="bg-dark print-page-break">
+    <div class="section" style="padding-bottom: 2rem;">
+        <div class="section-label">The Vision</div>
+        <h2>From Tool to Platform</h2>
+        <p class="lead">
+            The software we build in Phase 1 and 2 is a planning tool.
+            But the architecture supports something much bigger.
+        </p>
+    </div>
+
+    <div class="section" style="padding-top: 0;">
+        <div class="vision-stages">
+            <div class="vision-stage">
+                <div class="vision-icon"><i class="fas fa-laptop"></i></div>
+                <h4>Planning Tool</h4>
+                <p>Internal PMs upload boundaries, generate smart flight plans, and produce project quotes. Phases 1 &amp; 2.</p>
+            </div>
+            <div class="vision-stage">
+                <div class="vision-icon"><i class="fas fa-users-gear"></i></div>
+                <h4>Operations Platform</h4>
+                <p>Field crews use the companion app. Pilots pull plans to DJI controllers. Real data flows back. Phase 3.</p>
+            </div>
+            <div class="vision-stage">
+                <div class="vision-icon"><i class="fas fa-store"></i></div>
+                <h4>Client Marketplace</h4>
+                <p>Clients draw an area, pick a product, and get an instant quote. The tool becomes the sales channel. Phase 4.</p>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-number">90%</div>
+                <div class="stat-label">Faster Planning</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number"><i class="fas fa-arrows-rotate" style="font-size: 1.5rem;"></i></div>
+                <div class="stat-label">Data Flywheel</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Self-Service Quoting</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number"><i class="fas fa-lock" style="font-size: 1.5rem;"></i></div>
+                <div class="stat-label">Ripper Corp Owns It All</div>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="background: rgba(255,255,255,0.05); border-left-color: var(--accent);">
+            <p style="color: rgba(255,255,255,0.8);">
+                <strong style="color: white;">The data flywheel is the competitive moat.</strong>
+                Every job run through the system feeds real operational data back into the costing engine &mdash;
+                actual GCP placement times, real turnaround rates, true travel durations. After 50 jobs,
+                your quotes are more accurate than anyone doing it by hand. After 200 jobs,
+                a competitor would need years of data to catch up.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     CTA
+     ════════════════════════════════════════════════════════════════ -->
+<section class="cta-section">
+    <h2>Ready to Build This?</h2>
+    <p>
+        We can have a working beta with cadastral-intelligent planning
+        in your hands within two weeks. Let's talk next steps.
+    </p>
+    <a href="tel:0423720477" class="cta-button">
+        <i class="fas fa-phone"></i>
+        0423 720 477
+    </a>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+    <p>&copy; 2026 LittleRipper_Projects &bull; Prepared for Ripper Corp &bull; Confidential</p>
+</footer>
+
+</body>
+</html>
