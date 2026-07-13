@@ -10,7 +10,8 @@
   .card{background:#131a22;border:1px solid #202b36;border-radius:14px;padding:20px 22px;margin-bottom:20px}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
   .stat .k{color:#8b98a5;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
-  .stat .v{font-size:20px;font-weight:600;margin-top:2px}
+  .stat .v{font-size:20px;font-weight:600;margin-top:2px;overflow-wrap:anywhere}
+  .stat.wide{grid-column:1/-1}
   h2{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#8b98a5;margin:0 0 14px}
   .charts{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
   .chart{background:#0e141b;border-radius:10px;max-width:100%}
@@ -36,10 +37,10 @@
   <p class="sub">Mavic 3E · Remote Operations · 2026-06-11T04:08:51.282Z</p>
 
   <div class="card"><div class="grid">
-    <div class="stat"><div class="k">Drone</div><div class="v">—</div></div>
-    <div class="stat"><div class="k">Pilot</div><div class="v">Remote Operations</div></div>
-    <div class="stat"><div class="k">Duration</div><div class="v">6m 21s</div></div>
-    <div class="stat"><div class="k">Distance</div><div class="v">0 m</div></div>
+    <div class="stat wide"><div class="k">Drone</div><div class="v">—</div></div>
+    <div class="stat "><div class="k">Pilot</div><div class="v">Remote Operations</div></div>
+    <div class="stat "><div class="k">Duration</div><div class="v">6m 21s</div></div>
+    <div class="stat "><div class="k">Distance</div><div class="v">0 m</div></div>
     
   </div><p style="margin:16px 0 0"><a href="https://www.openstreetmap.org/?mlat=-33.76642977048605&mlon=151.23323252165628#map=16/-33.76642977048605/151.23323252165628" target="_blank" rel="noopener">📍 Take-off: -33.76642977048605, 151.23323252165628 — open in map</a></p></div>
 

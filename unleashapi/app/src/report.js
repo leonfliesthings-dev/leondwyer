@@ -118,7 +118,7 @@ export function renderReport(recap, { backHref } = {}) {
   const hasGeo = Number.isFinite(+lat) && Number.isFinite(+lon);
   const mapUrl = hasGeo ? `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=16/${lat}/${lon}` : null;
 
-  const stat = (k, v) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`;
+  const stat = (k, v, cls = "") => `<div class="stat ${cls}"><div class="k">${k}</div><div class="v">${v}</div></div>`;
 
   const telemetryStats = t
     ? [
@@ -155,7 +155,8 @@ export function renderReport(recap, { backHref } = {}) {
   .card{background:#131a22;border:1px solid #202b36;border-radius:14px;padding:20px 22px;margin-bottom:20px}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
   .stat .k{color:#8b98a5;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
-  .stat .v{font-size:20px;font-weight:600;margin-top:2px}
+  .stat .v{font-size:20px;font-weight:600;margin-top:2px;overflow-wrap:anywhere}
+  .stat.wide{grid-column:1/-1}
   h2{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#8b98a5;margin:0 0 14px}
   .charts{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
   .chart{background:#0e141b;border-radius:10px;max-width:100%}
@@ -181,7 +182,7 @@ export function renderReport(recap, { backHref } = {}) {
   <p class="sub">${esc(f.name || f.id)} · ${esc(head.userName || f.pilotName || "")} · ${esc(new Date(head.flightStartTime || +f.flightStartDate || Date.now()).toISOString())}</p>
 
   <div class="card"><div class="grid">
-    ${stat("Drone", esc(f.droneName || head.droneName || "—"))}
+    ${stat("Drone", esc(f.droneName || head.droneName || "—"), "wide")}
     ${stat("Pilot", esc(f.pilotName || head.userName || "—"))}
     ${stat("Duration", fmtDur(f.flightDuration))}
     ${stat("Distance", fmtDist(f.flightDistance))}
