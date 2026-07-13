@@ -1,0 +1,5 @@
+# Never commit tokens or generated reports
+.env
+*.local
+out/
+node_modules/

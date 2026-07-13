@@ -1,0 +1,14 @@
+{
+  "name": "unleash-flight-recap",
+  "version": "0.1.0",
+  "description": "Fuse Unleash Live Flight Logs + Analytics into a narrated HTML flight recap.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "flights": "node index.js --list"
+  },
+  "license": "MIT"
+}
