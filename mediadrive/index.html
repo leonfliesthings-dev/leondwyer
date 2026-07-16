@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Media Drive Finder</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b1016; color: #e6edf3; font: 14px -apple-system, Segoe UI, Roboto, sans-serif; }
+  header { background: #2b3644; padding: 12px 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header .title { font-size: 17px; font-weight: 600; }
+  header .sub { color: #8b98a5; font-size: 12px; }
+  .tok { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  input, select { background: #131a22; border: 1px solid #202b36; border-radius: 8px; color: #e6edf3; font-size: 13px; padding: 7px 9px; }
+  input:focus, select:focus { outline: none; border-color: #2f6fd6; }
+  button { background: #2f6fd6; color: #fff; border: 0; border-radius: 8px; font-weight: 600; padding: 8px 14px; cursor: pointer; }
+  button.ghost { background: #131a22; border: 1px solid #202b36; color: #c9d4de; font-weight: 500; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: end; padding: 14px 18px; background: #0f151c; border-bottom: 1px solid #202b36; }
+  .f { display: flex; flex-direction: column; gap: 4px; }
+  .f label { font-size: 11px; color: #8b98a5; }
+  .f input, .f select { min-width: 120px; }
+  .status { padding: 8px 18px; color: #8b98a5; font-size: 12px; }
+  .status .warn { color: #e3b341; } .status .err { color: #ff7b72; }
+  .list { padding: 6px 18px 40px; display: grid; gap: 8px; }
+  .row { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 8px; background: #0f151c; border: 1px solid #202b36; border-radius: 10px; }
+  .thumb { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: #131a22; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #5b6774; overflow: hidden; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .meta .name { font-weight: 600; word-break: break-all; }
+  .meta .sub2 { color: #8b98a5; font-size: 12px; margin-top: 3px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .badge { font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: #202b36; color: #9fb0c0; }
+  .badge.ai { background: #17351f; color: #3fb950; }
+  .actions a { color: #74c0fc; text-decoration: none; font-size: 12px; }
+  .actions { display: flex; flex-direction: column; gap: 4px; text-align: right; }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="title">◈ Media Drive Finder</div>
+      <div class="sub">Real search over Unleash Media Drive — substring names, date range, type, device, tags</div>
+    </div>
+    <div class="tok">
+      <input id="pat" type="password" placeholder="ul_pat_… token" size="24" />
+      <button class="ghost" id="savePat">Save</button>
+    </div>
+  </header>
+
+  <div class="filters">
+    <div class="f"><label>Name contains (substring)</label><input id="name" placeholder="e.g. sync" /></div>
+    <div class="f"><label>Type</label>
+      <select id="type">
+        <option value="">Any</option>
+        <option value="I">Image</option>
+        <option value="V">Video</option>
+        <option value="M">Model</option>
+        <option value="R">Report</option>
+        <option value="FL">Flight log</option>
+        <option value="D">Document</option>
+        <option value="F">Folder</option>
+      </select>
+    </div>
+    <div class="f"><label>Captured from</label><input id="from" type="date" /></div>
+    <div class="f"><label>to</label><input id="to" type="date" /></div>
+    <div class="f"><label>Device ID</label><input id="device" placeholder="Wxxxx" /></div>
+    <div class="f"><label>Tags</label><input id="tags" placeholder="e.g. aiResultsNum:1" /></div>
+    <div class="f"><label>AI-analysed only</label><select id="ai"><option value="">No</option><option value="1">Yes</option></select></div>
+    <button id="search">Search</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+
+  <div class="status" id="status">Paste your PAT, set filters, and hit Search.</div>
+  <div class="list" id="list"></div>
+
+<script>
+const ENDPOINT = 'https://mediadrive-api.unleashlive.com/graphql';
+const PAGE = 200, MAX_SCAN = 2000; // client-side substring needs to scan a candidate set
+const $ = (id) => document.getElementById(id);
+const TYPE_LABEL = { I: 'Image', V: 'Video', M: 'Model', R: 'Report', FL: 'Flight log', D: 'Document', F: 'Folder' };
+const TYPE_ICON = { I: '🖼', V: '🎬', M: '🧊', R: '📄', FL: '✈', D: '📄', F: '📁' };
+
+$('pat').value = localStorage.getItem('ul_pat') || '';
+$('savePat').onclick = () => { localStorage.setItem('ul_pat', $('pat').value.trim()); flash('Token saved.'); };
+$('clear').onclick = () => { ['name','device','tags'].forEach((i) => $(i).value = ''); $('from').value = $('to').value = ''; $('type').value = $('ai').value = ''; };
+$('search').onclick = run;
+$('name').addEventListener('keydown', (e) => { if (e.key === 'Enter') run(); });
+
+function flash(msg, cls = '') { $('status').innerHTML = cls ? `<span class="${cls}">${msg}</span>` : msg; }
+const dayMs = (v, end) => { if (!v) return null; const d = new Date(v + 'T00:00:00'); if (end) d.setHours(23, 59, 59, 999); return String(d.getTime()); };
+
+const QUERY = `query Find($type:String,$dateFrom:String,$dateTo:String,$tags:String,$deviceId:String,$limit:Int,$nextToken:LastEvaluatedKeyInput){
+  list(type:$type,dateFrom:$dateFrom,dateTo:$dateTo,tags:$tags,deviceId:$deviceId,sort:desc,limit:$limit,nextToken:$nextToken){
+    items{ id name type deviceId tags createdAt s3Path mimeType isApproved parentId location }
+    nextToken{ pk sk locationCreatedAt teamId teamIdType createdAt searchNameCreatedAt searchName deviceId type parentIdTypeSk }
+  }
+}`;
+const AI_QUERY = QUERY.replace('list(', 'listAiItems(');
+
+async function gql(vars, ai) {
+  const res = await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + $('pat').value.trim() }, body: JSON.stringify({ query: ai ? AI_QUERY : QUERY, variables: vars }) });
+  if (res.status === 401) throw new Error('401 — check your PAT.');
+  const j = await res.json();
+  if (j.errors) throw new Error(j.errors.map((e) => e.message).join('; '));
+  return ai ? j.data.listAiItems : j.data.list;
+}
+
+async function run() {
+  const pat = $('pat').value.trim();
+  if (!pat) return flash('Paste your PAT first.', 'err');
+  const ai = $('ai').value === '1';
+  const base = { type: $('type').value || null, dateFrom: dayMs($('from').value), dateTo: dayMs($('to').value, true), tags: $('tags').value.trim() || null, deviceId: $('device').value.trim() || null, limit: PAGE };
+  const needle = $('name').value.trim().toLowerCase();
+  $('search').disabled = true; $('list').innerHTML = '';
+  try {
+    let token = null, scanned = 0, matched = [], pages = 0;
+    do {
+      const page = await gql({ ...base, nextToken: token }, ai);
+      const items = page.items || [];
+      scanned += items.length; pages++;
+      for (const it of items) if (!needle || (it.name || '').toLowerCase().includes(needle)) matched.push(it);
+      token = page.nextToken ? Object.fromEntries(Object.entries(page.nextToken).filter(([k, v]) => v != null && k !== '__typename')) : null;
+      flash(`Scanning… ${scanned} items, ${matched.length} match${matched.length === 1 ? '' : 'es'} so far`);
+    } while (token && scanned < MAX_SCAN && (needle || matched.length < PAGE));
+    render(matched);
+    const capped = token && scanned >= MAX_SCAN;
+    flash(`${matched.length} match${matched.length === 1 ? '' : 'es'} from ${scanned} scanned${capped ? ' — <span class="warn">hit scan cap, add a date/type filter to narrow it</span>' : ''}.`);
+  } catch (e) { flash(e.message, 'err'); }
+  finally { $('search').disabled = false; }
+}
+
+function render(items) {
+  const list = $('list');
+  list.innerHTML = '';
+  for (const it of items) {
+    const when = it.createdAt ? new Date(it.createdAt > 1e12 ? it.createdAt : it.createdAt * 1000).toISOString().slice(0, 16).replace('T', ' ') : '';
+    const url = it.s3Path ? 'https://library.unleashlive.com/' + it.s3Path : null;
+    // Open the item in the cloud Drive: folders open themselves, files open their containing folder.
+    const cloudId = it.type === 'F' ? it.id : (it.parentId || it.id);
+    const cloudUrl = 'https://cloud.unleashlive.com/secure/library/' + cloudId;
+    const isAi = (it.tags || '').includes('aiResults');
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = `
+      <div class="thumb">${it.type === 'I' && url ? `<img loading="lazy" src="${url}" alt="">` : (TYPE_ICON[it.type] || '•')}</div>
+      <div class="meta">
+        <div class="name">${escapeHtml(it.name || '(unnamed)')}</div>
+        <div class="sub2">
+          <span class="badge">${TYPE_LABEL[it.type] || it.type}</span>
+          ${isAi ? '<span class="badge ai">AI</span>' : ''}
+          <span>${when}</span>
+          ${it.deviceId ? `<span>📷 ${escapeHtml(it.deviceId)}</span>` : ''}
+          ${it.tags ? `<span>🏷 ${escapeHtml(it.tags)}</span>` : ''}
+        </div>
+      </div>
+      <div class="actions">
+        <a href="${cloudUrl}" target="_blank" rel="noopener">Open in Drive ↗</a>
+        ${url ? `<a href="${url}" target="_blank" rel="noopener">File ↗</a>` : ''}
+        <a href="#" class="copy">Copy ID</a>
+      </div>`;
+    row.querySelector('.copy').onclick = (e) => { e.preventDefault(); navigator.clipboard.writeText(it.id); e.target.textContent = 'Copied'; };
+    list.appendChild(row);
+  }
+}
+function escapeHtml(s) { return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+</script>
+</body>
+</html>
