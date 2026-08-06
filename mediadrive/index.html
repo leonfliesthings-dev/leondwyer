@@ -4,90 +4,342 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Media Drive Finder</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23006ba8'/><circle cx='14' cy='14' r='6.5' fill='none' stroke='white' stroke-width='2.5'/><line x1='19' y1='19' x2='25' y2='25' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&display=swap" rel="stylesheet">
 <style>
-  :root { color-scheme: dark; }
+  /* Unleash Live product UI tokens. See ~/Downloads/Ui stuff/UNLEASH-UI-SPEC.md */
+  :root {
+    color-scheme: light;
+    --ul-primary: #006ba8;
+    --ul-primary-ripple: rgba(0,107,168,.1);
+    --ul-accent: #26bb6f;
+    --ul-accent-ripple: rgba(38,187,111,.1);
+    --ul-warn: #d72638;
+    --ul-nav-bg: #222;
+    --ul-app-bg: #fafafa;
+    --ul-surface: #fff;
+    --ul-surface-alt: #f5f5f5;
+    --ul-surface-hover: #eee;
+    --ul-border: #ccc;
+    --ul-border-subtle: rgba(0,0,0,.12);
+    --ul-text-high: rgba(0,0,0,.87);
+    --ul-text-medium: rgba(0,0,0,.54);
+    --ul-text-disabled: rgba(0,0,0,.38);
+    --ul-on-nav: #eee;
+    --ul-on-nav-label: #ccc;
+    --ul-space-1: 4px; --ul-space-2: 8px; --ul-space-3: 12px;
+    --ul-space-4: 16px; --ul-space-5: 24px; --ul-space-6: 32px;
+    --ul-radius-sm: 4px;
+    --ul-elev-1: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+    --ul-elev-nav: 0 0 8px #00000080;
+    --ul-font: Rubik, sans-serif;
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; background: #0b1016; color: #e6edf3; font: 14px -apple-system, Segoe UI, Roboto, sans-serif; }
-  header { background: #2b3644; padding: 12px 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  header .title { font-size: 17px; font-weight: 600; }
-  header .sub { color: #8b98a5; font-size: 12px; }
-  .tok { margin-left: auto; display: flex; gap: 8px; align-items: center; }
-  input, select { background: #131a22; border: 1px solid #202b36; border-radius: 8px; color: #e6edf3; font-size: 13px; padding: 7px 9px; }
-  input:focus, select:focus { outline: none; border-color: #2f6fd6; }
-  button { background: #2f6fd6; color: #fff; border: 0; border-radius: 8px; font-weight: 600; padding: 8px 14px; cursor: pointer; }
-  button.ghost { background: #131a22; border: 1px solid #202b36; color: #c9d4de; font-weight: 500; }
-  button:disabled { opacity: .5; cursor: not-allowed; }
-  .filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: end; padding: 14px 18px; background: #0f151c; border-bottom: 1px solid #202b36; }
-  .f { display: flex; flex-direction: column; gap: 4px; }
-  .f label { font-size: 11px; color: #8b98a5; }
-  .f input, .f select { min-width: 120px; }
-  .status { padding: 8px 18px; color: #8b98a5; font-size: 12px; }
-  .status .warn { color: #e3b341; } .status .err { color: #ff7b72; }
-  .list { padding: 6px 18px 40px; display: grid; gap: 8px; }
-  .row { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 8px; background: #0f151c; border: 1px solid #202b36; border-radius: 10px; }
-  .thumb { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: #131a22; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #5b6774; overflow: hidden; }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .meta .name { font-weight: 600; word-break: break-all; }
-  .meta .sub2 { color: #8b98a5; font-size: 12px; margin-top: 3px; display: flex; gap: 12px; flex-wrap: wrap; }
-  .badge { font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: #202b36; color: #9fb0c0; }
-  .badge.ai { background: #17351f; color: #3fb950; }
-  .actions a { color: #74c0fc; text-decoration: none; font-size: 12px; }
-  .actions { display: flex; flex-direction: column; gap: 4px; text-align: right; }
+  body {
+    margin: 0; display: flex; height: 100vh; overflow: hidden;
+    background: var(--ul-app-bg); color: var(--ul-text-high);
+    font: 400 14px/20px var(--ul-font);
+  }
+  .material-symbols-outlined { font-variation-settings: 'opsz' 20; user-select: none; }
+
+  /* Left nav rail */
+  .nav {
+    flex: 0 0 auto; width: 56px; background: var(--ul-nav-bg); padding: 16px 0;
+    box-shadow: var(--ul-elev-nav); z-index: 1500;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .nav a {
+    width: 40px; height: 40px; border-radius: var(--ul-radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ul-on-nav); text-decoration: none;
+    transition: background-color .2s, color .2s;
+  }
+  .nav a .material-symbols-outlined { font-size: 20px; }
+  .nav a:hover { background: rgba(255,255,255,.1); }
+  .nav a.on { background: var(--ul-surface); color: var(--ul-primary); }
+  .nav a:focus-visible { outline: 2px solid var(--ul-primary); outline-offset: 2px; }
+  .nav .spacer { flex: 1; }
+
+  .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+  /* Page header */
+  header {
+    background: var(--ul-surface); border-bottom: 1px solid var(--ul-border-subtle);
+    padding: var(--ul-space-3) var(--ul-space-5);
+    display: flex; align-items: center; gap: var(--ul-space-4); flex-wrap: wrap;
+  }
+  header .title { font-size: 20px; font-weight: 500; line-height: 28px; }
+  header .sub { font-size: 12px; line-height: 20px; color: var(--ul-text-medium); }
+  .tok { margin-left: auto; display: flex; gap: var(--ul-space-2); align-items: center; }
+
+  /* Blue action bar */
+  .actionbar {
+    background: var(--ul-primary); display: flex; align-items: center;
+    gap: var(--ul-space-2); padding: 0 var(--ul-space-4); min-height: 48px;
+  }
+  .actionbar button {
+    background: transparent; color: #fff; border: 0; border-radius: var(--ul-radius-sm);
+    font: 500 14px/24px var(--ul-font); text-transform: uppercase; letter-spacing: .04em;
+    padding: var(--ul-space-2) var(--ul-space-3); cursor: pointer;
+    display: flex; align-items: center; gap: var(--ul-space-2);
+    transition: background-color .2s;
+  }
+  .actionbar button .material-symbols-outlined { font-size: 20px; }
+  .actionbar button:hover:not(:disabled) { background: rgba(255,255,255,.15); }
+  .actionbar button.on { background: rgba(255,255,255,.28); }
+  .actionbar button:disabled { opacity: .38; cursor: not-allowed; }
+  .actionbar .spacer { flex: 1; }
+  .viewtoggle { display: flex; gap: var(--ul-space-1); }
+
+  /* Controls */
+  input, select {
+    background: var(--ul-surface-alt); color: var(--ul-text-high);
+    border: 1px solid transparent; border-bottom: 1px solid rgba(0,0,0,.42);
+    border-radius: var(--ul-radius-sm) var(--ul-radius-sm) 0 0;
+    font: 400 14px/20px var(--ul-font); padding: var(--ul-space-2) var(--ul-space-3);
+    transition: border-color .2s, background-color .2s;
+  }
+  input:hover, select:hover { background: var(--ul-surface-hover); }
+  input:focus, select:focus { outline: none; border-bottom: 2px solid var(--ul-primary); padding-bottom: 7px; }
+  input:focus-visible, select:focus-visible { outline: 2px solid var(--ul-primary); outline-offset: 1px; }
+  button { font-family: var(--ul-font); }
+  .btn {
+    background: var(--ul-primary); color: #fff; border: 0; border-radius: var(--ul-radius-sm);
+    font: 500 14px/24px var(--ul-font); text-transform: uppercase; letter-spacing: .04em;
+    padding: var(--ul-space-2) var(--ul-space-4); cursor: pointer; transition: background-color .2s;
+  }
+  .btn:hover:not(:disabled) { background: #005a8f; }
+  .btn:focus-visible { outline: 2px solid var(--ul-primary); outline-offset: 2px; }
+  .btn.ghost {
+    background: transparent; color: var(--ul-primary);
+    border: 1px solid var(--ul-border-subtle);
+  }
+  .btn.ghost:hover:not(:disabled) { background: var(--ul-primary-ripple); }
+  .btn:disabled { background: rgba(0,0,0,.12); color: var(--ul-text-disabled); cursor: not-allowed; }
+
+  /* Scroll region */
+  .scroll { flex: 1; overflow-y: auto; padding: var(--ul-space-4); }
+
+  /* Card */
+  .card {
+    background: var(--ul-surface); border: 1px solid var(--ul-border-subtle);
+    border-radius: var(--ul-radius-sm); overflow: hidden;
+  }
+  .card__header {
+    font-size: 12px; font-weight: 500; line-height: 16px;
+    text-transform: uppercase; letter-spacing: .04em; color: var(--ul-text-high);
+    padding: var(--ul-space-3) var(--ul-space-4);
+    border-bottom: 1px solid var(--ul-border-subtle);
+  }
+  .card__body { padding: var(--ul-space-4); }
+
+  .filters { display: flex; gap: var(--ul-space-3); flex-wrap: wrap; align-items: end; }
+  .f { display: flex; flex-direction: column; gap: var(--ul-space-1); }
+  .f label { font-size: 12px; line-height: 16px; color: var(--ul-text-medium); }
+  .f input, .f select { min-width: 132px; }
+
+  .status {
+    font-size: 12px; line-height: 20px; color: var(--ul-text-medium);
+    padding: var(--ul-space-3) 0 0;
+  }
+  .status .warn { color: #b26a00; }
+  .status .err { color: var(--ul-warn); }
+
+  /* Results, grid mode */
+  .list { margin-top: var(--ul-space-4); display: grid; gap: var(--ul-space-4);
+          grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); }
+  .item {
+    background: var(--ul-surface); border: 1px solid var(--ul-border-subtle);
+    border-radius: var(--ul-radius-sm); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: background-color .3s ease-in-out, box-shadow .2s;
+  }
+  .item:hover { background: var(--ul-surface-alt); box-shadow: var(--ul-elev-1); }
+  .item__thumb {
+    aspect-ratio: 4 / 3; background: var(--ul-surface-alt);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ul-text-disabled); overflow: hidden;
+  }
+  .item__thumb .material-symbols-outlined { font-size: 32px; }
+  .item__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .item__meta { padding: var(--ul-space-2) var(--ul-space-3); flex: 1;
+                display: flex; flex-direction: column; gap: var(--ul-space-1); }
+  .item__name {
+    font-size: 14px; font-weight: 500; line-height: 20px; color: var(--ul-text-high);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .item__sub {
+    font-size: 12px; line-height: 16px; color: var(--ul-text-medium);
+    font-variant-numeric: tabular-nums;
+    display: flex; gap: var(--ul-space-2); flex-wrap: wrap; align-items: center;
+  }
+  .item__actions {
+    display: flex; gap: var(--ul-space-3); padding: var(--ul-space-2) var(--ul-space-3);
+    border-top: 1px solid var(--ul-border-subtle); margin-top: auto;
+  }
+  .item__actions a {
+    color: var(--ul-primary); text-decoration: none; font-size: 12px; font-weight: 500;
+    line-height: 16px; display: flex; align-items: center; gap: 2px;
+  }
+  .item__actions a:hover { text-decoration: underline; }
+  .item__actions a:focus-visible { outline: 2px solid var(--ul-primary); outline-offset: 2px; }
+  .item__actions .material-symbols-outlined { font-size: 14px; }
+
+  .badge {
+    font-size: 12px; font-weight: 500; line-height: 16px; padding: 0 var(--ul-space-2);
+    border-radius: 999px; background: var(--ul-surface-alt); color: var(--ul-text-medium);
+  }
+  .badge.ai { background: var(--ul-accent-ripple); color: #1a8a50; }
+
+  /* Results, list mode */
+  .list.rows { grid-template-columns: 1fr; gap: 0; border: 1px solid var(--ul-border-subtle);
+               border-radius: var(--ul-radius-sm); background: var(--ul-surface); overflow: hidden; }
+  .list.rows .item {
+    flex-direction: row; align-items: center; gap: var(--ul-space-3);
+    border: 0; border-bottom: 1px solid var(--ul-border-subtle); border-radius: 0;
+    padding: var(--ul-space-2); box-shadow: none;
+  }
+  .list.rows .item:last-child { border-bottom: 0; }
+  .list.rows .item:hover { background: var(--ul-surface-hover); box-shadow: none; }
+  .list.rows .item__thumb { width: 56px; height: 56px; flex: 0 0 56px;
+                            aspect-ratio: auto; border-radius: var(--ul-radius-sm); }
+  .list.rows .item__thumb .material-symbols-outlined { font-size: 24px; }
+  .list.rows .item__meta { padding: 0; }
+  .list.rows .item__actions { border: 0; margin: 0 0 0 auto; flex-direction: column;
+                              gap: var(--ul-space-1); align-items: flex-end; }
+
+  /* Empty and loading states */
+  .empty {
+    margin-top: var(--ul-space-6); padding: var(--ul-space-6);
+    display: flex; flex-direction: column; align-items: center; gap: var(--ul-space-2);
+    text-align: center; color: var(--ul-text-medium);
+  }
+  .empty .material-symbols-outlined { font-size: 48px; color: var(--ul-text-disabled); }
+  .empty h2 { margin: 0; font-size: 20px; font-weight: 500; line-height: 28px; color: var(--ul-text-high); }
+  .empty p { margin: 0; font-size: 14px; line-height: 20px; max-width: 42ch; }
+  .skel { background: var(--ul-surface-alt); border-radius: var(--ul-radius-sm);
+          animation: pulse 1.4s ease-in-out infinite; }
+  .skel.thumb { aspect-ratio: 4 / 3; }
+  .skel.line { height: 12px; margin: var(--ul-space-2) var(--ul-space-3); }
+  .skel.line.short { width: 55%; }
+  @keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: .55 } }
 </style>
 </head>
 <body>
-  <header>
-    <div>
-      <div class="title">◈ Media Drive Finder</div>
-      <div class="sub">Real search over Unleash Media Drive — substring names, date range, type, device, tags</div>
-    </div>
-    <div class="tok">
-      <input id="pat" type="password" placeholder="ul_pat_… token" size="24" />
-      <button class="ghost" id="savePat">Save</button>
-    </div>
-  </header>
+  <nav class="nav">
+    <a href="https://cloud.unleashlive.com/secure/stream" target="_blank" rel="noopener" title="Stream"><span class="material-symbols-outlined">videocam</span></a>
+    <a href="https://cloud.unleashlive.com/secure/library" target="_blank" rel="noopener" class="on" title="Media Drive"><span class="material-symbols-outlined">perm_media</span></a>
+    <a href="https://cloud.unleashlive.com/secure/atlas" target="_blank" rel="noopener" title="Atlas"><span class="material-symbols-outlined">public</span></a>
+    <a href="https://cloud.unleashlive.com/secure/jobs" target="_blank" rel="noopener" title="Jobs"><span class="material-symbols-outlined">check_circle</span></a>
+    <span class="spacer"></span>
+  </nav>
 
-  <div class="filters">
-    <div class="f"><label>Name contains (substring)</label><input id="name" placeholder="e.g. sync" /></div>
-    <div class="f"><label>Type</label>
-      <select id="type">
-        <option value="">Any</option>
-        <option value="I">Image</option>
-        <option value="V">Video</option>
-        <option value="M">Model</option>
-        <option value="R">Report</option>
-        <option value="FL">Flight log</option>
-        <option value="D">Document</option>
-        <option value="F">Folder</option>
-      </select>
+  <div class="main">
+    <header>
+      <div>
+        <div class="title">Media Drive Finder</div>
+        <div class="sub">Search Unleash Media Drive by name substring, date range, type, device and tags</div>
+      </div>
+      <div class="tok">
+        <input id="pat" type="password" placeholder="ul_pat_… token" size="24" aria-label="Personal access token" />
+        <button class="btn ghost" id="savePat">Save</button>
+      </div>
+    </header>
+
+    <div class="actionbar">
+      <button id="search"><span class="material-symbols-outlined">search</span>Search</button>
+      <button id="clear"><span class="material-symbols-outlined">backspace</span>Clear</button>
+      <span class="spacer"></span>
+      <span class="viewtoggle">
+        <button id="viewGrid" class="on" title="Grid view" aria-label="Grid view"><span class="material-symbols-outlined">grid_view</span></button>
+        <button id="viewList" title="List view" aria-label="List view"><span class="material-symbols-outlined">view_list</span></button>
+      </span>
     </div>
-    <div class="f"><label>Captured from</label><input id="from" type="date" /></div>
-    <div class="f"><label>to</label><input id="to" type="date" /></div>
-    <div class="f"><label>Device ID</label><input id="device" placeholder="Wxxxx" /></div>
-    <div class="f"><label>Tags</label><input id="tags" placeholder="e.g. aiResultsNum:1" /></div>
-    <div class="f"><label>AI-analysed only</label><select id="ai"><option value="">No</option><option value="1">Yes</option></select></div>
-    <button id="search">Search</button>
-    <button class="ghost" id="clear">Clear</button>
+
+    <div class="scroll">
+      <div class="card">
+        <div class="card__header">Filters</div>
+        <div class="card__body">
+          <div class="filters">
+            <div class="f"><label for="name">Name contains (substring)</label><input id="name" placeholder="e.g. sync" /></div>
+            <div class="f"><label for="type">Type</label>
+              <select id="type">
+                <option value="">Any</option>
+                <option value="I">Image</option>
+                <option value="V">Video</option>
+                <option value="M">Model</option>
+                <option value="R">Report</option>
+                <option value="FL">Flight log</option>
+                <option value="D">Document</option>
+                <option value="F">Folder</option>
+              </select>
+            </div>
+            <div class="f"><label for="from">Captured from</label><input id="from" type="date" /></div>
+            <div class="f"><label for="to">to</label><input id="to" type="date" /></div>
+            <div class="f"><label for="device">Device ID</label><input id="device" placeholder="Wxxxx" /></div>
+            <div class="f"><label for="tags">Tags</label><input id="tags" placeholder="e.g. aiResultsNum:1" /></div>
+            <div class="f"><label for="ai">AI-analysed only</label><select id="ai"><option value="">No</option><option value="1">Yes</option></select></div>
+          </div>
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="list" id="list"></div>
+    </div>
   </div>
-
-  <div class="status" id="status">Paste your PAT, set filters, and hit Search.</div>
-  <div class="list" id="list"></div>
 
 <script>
 const ENDPOINT = 'https://mediadrive-api.unleashlive.com/graphql';
 const PAGE = 200, MAX_SCAN = 2000; // client-side substring needs to scan a candidate set
 const $ = (id) => document.getElementById(id);
 const TYPE_LABEL = { I: 'Image', V: 'Video', M: 'Model', R: 'Report', FL: 'Flight log', D: 'Document', F: 'Folder' };
-const TYPE_ICON = { I: '🖼', V: '🎬', M: '🧊', R: '📄', FL: '✈', D: '📄', F: '📁' };
+const TYPE_ICON = { I: 'image', V: 'movie', M: 'view_in_ar', R: 'description', FL: 'flight', D: 'description', F: 'folder' };
 
 $('pat').value = localStorage.getItem('ul_pat') || '';
-$('savePat').onclick = () => { localStorage.setItem('ul_pat', $('pat').value.trim()); flash('Token saved.'); };
-$('clear').onclick = () => { ['name','device','tags'].forEach((i) => $(i).value = ''); $('from').value = $('to').value = ''; $('type').value = $('ai').value = ''; };
+$('savePat').onclick = () => { localStorage.setItem('ul_pat', $('pat').value.trim()); flash('Token saved to this browser.'); };
+$('clear').onclick = () => {
+  ['name','device','tags'].forEach((i) => $(i).value = '');
+  $('from').value = $('to').value = ''; $('type').value = $('ai').value = '';
+  emptyState('search', 'Ready when you are', 'Set your filters and hit Search.');
+  flash('');
+};
 $('search').onclick = run;
 $('name').addEventListener('keydown', (e) => { if (e.key === 'Enter') run(); });
 
-function flash(msg, cls = '') { $('status').innerHTML = cls ? `<span class="${cls}">${msg}</span>` : msg; }
+// View mode. Grid is the default; list is denser for comparing names and timestamps.
+let view = localStorage.getItem('ul_md_view') || 'grid';
+function setView(v) {
+  view = v; localStorage.setItem('ul_md_view', v);
+  $('list').classList.toggle('rows', v === 'list');
+  $('viewGrid').classList.toggle('on', v === 'grid');
+  $('viewList').classList.toggle('on', v === 'list');
+}
+$('viewGrid').onclick = () => setView('grid');
+$('viewList').onclick = () => setView('list');
+setView(view);
+
+function flash(msg, cls = '') { $('status').innerHTML = !msg ? '' : cls ? `<span class="${cls}">${msg}</span>` : msg; }
 const dayMs = (v, end) => { if (!v) return null; const d = new Date(v + 'T00:00:00'); if (end) d.setHours(23, 59, 59, 999); return String(d.getTime()); };
+
+function emptyState(icon, heading, body) {
+  $('list').classList.remove('rows');
+  $('list').innerHTML = `<div class="empty" style="grid-column:1/-1">
+    <span class="material-symbols-outlined">${icon}</span>
+    <h2>${escapeHtml(heading)}</h2>
+    <p>${escapeHtml(body)}</p>
+  </div>`;
+}
+
+// Skeleton tiles read as progress far better than a line of status text.
+function skeletons(n = 12) {
+  $('list').classList.toggle('rows', view === 'list');
+  $('list').innerHTML = Array.from({ length: n }, () => `
+    <div class="item"><div class="skel thumb"></div>
+      <div class="skel line"></div><div class="skel line short"></div></div>`).join('');
+}
 
 const QUERY = `query Find($type:String,$dateFrom:String,$dateTo:String,$tags:String,$deviceId:String,$limit:Int,$nextToken:LastEvaluatedKeyInput){
   list(type:$type,dateFrom:$dateFrom,dateTo:$dateTo,tags:$tags,deviceId:$deviceId,sort:desc,limit:$limit,nextToken:$nextToken){
@@ -99,7 +351,7 @@ const AI_QUERY = QUERY.replace('list(', 'listAiItems(');
 
 async function gql(vars, ai) {
   const res = await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + $('pat').value.trim() }, body: JSON.stringify({ query: ai ? AI_QUERY : QUERY, variables: vars }) });
-  if (res.status === 401) throw new Error('401 — check your PAT.');
+  if (res.status === 401) throw new Error('401, check your PAT.');
   const j = await res.json();
   if (j.errors) throw new Error(j.errors.map((e) => e.message).join('; '));
   return ai ? j.data.listAiItems : j.data.list;
@@ -111,7 +363,7 @@ async function run() {
   const ai = $('ai').value === '1';
   const base = { type: $('type').value || null, dateFrom: dayMs($('from').value), dateTo: dayMs($('to').value, true), tags: $('tags').value.trim() || null, deviceId: $('device').value.trim() || null, limit: PAGE };
   const needle = $('name').value.trim().toLowerCase();
-  $('search').disabled = true; $('list').innerHTML = '';
+  $('search').disabled = true; skeletons();
   try {
     let token = null, scanned = 0, matched = [], pages = 0;
     do {
@@ -122,47 +374,59 @@ async function run() {
       token = page.nextToken ? Object.fromEntries(Object.entries(page.nextToken).filter(([k, v]) => v != null && k !== '__typename')) : null;
       flash(`Scanning… ${scanned} items, ${matched.length} match${matched.length === 1 ? '' : 'es'} so far`);
     } while (token && scanned < MAX_SCAN && (needle || matched.length < PAGE));
-    render(matched);
     const capped = token && scanned >= MAX_SCAN;
-    flash(`${matched.length} match${matched.length === 1 ? '' : 'es'} from ${scanned} scanned${capped ? ' — <span class="warn">hit scan cap, add a date/type filter to narrow it</span>' : ''}.`);
-  } catch (e) { flash(e.message, 'err'); }
+    if (!matched.length) {
+      emptyState('search_off', 'No matches', `Scanned ${scanned} items and found nothing. Try a shorter name fragment or widen the date range.`);
+      flash('');
+    } else {
+      render(matched);
+      flash(`${matched.length} match${matched.length === 1 ? '' : 'es'} from ${scanned} scanned${capped ? ', <span class="warn">hit the scan cap. Add a date or type filter to narrow it.</span>' : '.'}`);
+    }
+  } catch (e) {
+    emptyState('error', 'Search failed', e.message);
+    flash(e.message, 'err');
+  }
   finally { $('search').disabled = false; }
 }
 
 function render(items) {
   const list = $('list');
+  list.classList.toggle('rows', view === 'list');
   list.innerHTML = '';
   for (const it of items) {
     const when = it.createdAt ? new Date(it.createdAt > 1e12 ? it.createdAt : it.createdAt * 1000).toISOString().slice(0, 16).replace('T', ' ') : '';
-    const url = it.s3Path ? 'https://library.unleashlive.com/' + it.s3Path : null;
+    const url = it.s3Path ? 'https://library.unleashlive.com/' + encodeURI(it.s3Path) : null;
     // Open the item in the cloud Drive: folders open themselves, files open their containing folder.
     const cloudId = it.type === 'F' ? it.id : (it.parentId || it.id);
-    const cloudUrl = 'https://cloud.unleashlive.com/secure/library/' + cloudId;
+    const cloudUrl = 'https://cloud.unleashlive.com/secure/library/' + encodeURIComponent(cloudId);
     const isAi = (it.tags || '').includes('aiResults');
-    const row = document.createElement('div');
-    row.className = 'row';
-    row.innerHTML = `
-      <div class="thumb">${it.type === 'I' && url ? `<img loading="lazy" src="${url}" alt="">` : (TYPE_ICON[it.type] || '•')}</div>
-      <div class="meta">
-        <div class="name">${escapeHtml(it.name || '(unnamed)')}</div>
-        <div class="sub2">
-          <span class="badge">${TYPE_LABEL[it.type] || it.type}</span>
+    const name = escapeHtml(it.name || '(unnamed)');
+    const el = document.createElement('div');
+    el.className = 'item';
+    el.innerHTML = `
+      <div class="item__thumb">${it.type === 'I' && url ? `<img loading="lazy" src="${escapeHtml(url)}" alt="">` : `<span class="material-symbols-outlined">${TYPE_ICON[it.type] || 'draft'}</span>`}</div>
+      <div class="item__meta">
+        <div class="item__name" title="${name}">${name}</div>
+        <div class="item__sub">
+          <span class="badge">${TYPE_LABEL[it.type] || escapeHtml(it.type)}</span>
           ${isAi ? '<span class="badge ai">AI</span>' : ''}
           <span>${when}</span>
-          ${it.deviceId ? `<span>📷 ${escapeHtml(it.deviceId)}</span>` : ''}
-          ${it.tags ? `<span>🏷 ${escapeHtml(it.tags)}</span>` : ''}
+          ${it.deviceId ? `<span>${escapeHtml(it.deviceId)}</span>` : ''}
         </div>
+        ${it.tags ? `<div class="item__sub" title="${escapeHtml(it.tags)}">${escapeHtml(it.tags)}</div>` : ''}
       </div>
-      <div class="actions">
-        <a href="${cloudUrl}" target="_blank" rel="noopener">Open in Drive ↗</a>
-        ${url ? `<a href="${url}" target="_blank" rel="noopener">File ↗</a>` : ''}
+      <div class="item__actions">
+        <a href="${escapeHtml(cloudUrl)}" target="_blank" rel="noopener">Drive<span class="material-symbols-outlined">open_in_new</span></a>
+        ${url ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">File<span class="material-symbols-outlined">open_in_new</span></a>` : ''}
         <a href="#" class="copy">Copy ID</a>
       </div>`;
-    row.querySelector('.copy').onclick = (e) => { e.preventDefault(); navigator.clipboard.writeText(it.id); e.target.textContent = 'Copied'; };
-    list.appendChild(row);
+    el.querySelector('.copy').onclick = (e) => { e.preventDefault(); navigator.clipboard.writeText(it.id); e.currentTarget.textContent = 'Copied'; };
+    list.appendChild(el);
   }
 }
 function escapeHtml(s) { return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+
+emptyState('search', 'Ready when you are', 'Paste your PAT, set your filters, and hit Search.');
 </script>
 </body>
 </html>
