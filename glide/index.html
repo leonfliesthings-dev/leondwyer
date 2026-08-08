@@ -28,29 +28,40 @@
   }
   .disclaimer strong { color: #a33; }
 
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 18px; margin-top: 34px; }
+  .cards { display: grid; grid-template-columns: 1fr 1.6fr;
+    gap: 18px; margin-top: 34px; align-items: stretch; }
+  @media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
   .card {
     background: rgba(255,255,255,.9); border-radius: 16px; padding: 24px;
     box-shadow: 0 6px 24px rgba(10,40,70,.12); display: flex;
     flex-direction: column; align-items: center; text-align: center;
   }
-  .card h2 { font-size: 20px; color: #0d2c47; }
+  .card h2 { font-size: 22px; color: #0d2c47; }
   .card .sub { font-size: 13px; color: #2a5a80; margin-top: 4px; }
   .card p { font-size: 14px; line-height: 1.5; margin-top: 12px; color: #23425c; }
+
+  .platforms { display: flex; gap: 14px; margin-top: 16px; width: 100%; }
+  @media (max-width: 500px) { .platforms { flex-direction: column; } }
+  .platform {
+    flex: 1; border: 1.5px solid rgba(20,112,184,.3); border-radius: 12px;
+    padding: 14px 10px; display: flex; flex-direction: column;
+    align-items: center; background: rgba(242,249,254,.6);
+  }
+  .platform h3 { font-size: 15px; color: #0d2c47; }
+
   .qr {
-    width: 150px; height: 150px; margin-top: 16px; border-radius: 12px;
+    width: 130px; height: 130px; margin-top: 12px; border-radius: 12px;
     border: 2px dashed #7fb3d6; display: flex; flex-direction: column;
     align-items: center; justify-content: center; color: #4d84ab;
-    font-weight: 700; font-size: 13px; letter-spacing: 1px; gap: 6px;
+    font-weight: 700; font-size: 12px; letter-spacing: 1px; gap: 6px;
     background: #f2f9fe;
   }
-  .qr img { width: 150px; height: 150px; border-radius: 12px; }
-  .qr span { font-size: 26px; }
+  .qr img { width: 130px; height: 130px; border-radius: 12px; }
+  .qr span { font-size: 24px; }
   .btn {
-    margin-top: 14px; display: inline-block; background: #1470b8; color: #fff;
-    padding: 10px 22px; border-radius: 8px; text-decoration: none;
-    font-weight: 600; font-size: 14px;
+    margin-top: 12px; display: inline-block; background: #1470b8; color: #fff;
+    padding: 9px 18px; border-radius: 8px; text-decoration: none;
+    font-weight: 600; font-size: 13.5px;
   }
   .btn.soon { background: #9fb8ca; pointer-events: none; }
 
@@ -87,36 +98,38 @@
 
   <div class="cards">
     <div class="card">
-      <h2>&#128241; Phone App — iOS</h2>
-      <div class="sub">Fly with it in the cockpit</div>
-      <p>Live glide range, MacCready speed-to-fly, plain-English NOTAMs,
-         frequency alerts, SOS messaging and automatic flight logging.</p>
-      <div class="qr"><span>&#9992;&#65039;</span>QR COMING<br>SOON</div>
-      <a class="btn soon" href="#">TestFlight — coming soon</a>
-    </div>
-
-    <div class="card">
-      <h2>&#129302; Phone App — Android</h2>
-      <div class="sub">Same app, Android build</div>
-      <p>The identical companion for Android phones and tablets —
-         offline maps, NOTAM briefings and flight recovery included.</p>
-      <div class="qr"><span>&#9992;&#65039;</span>QR COMING<br>SOON</div>
-      <a class="btn soon" href="#">APK — coming soon</a>
-    </div>
-
-    <div class="card">
-      <h2>&#128187; Web Planner</h2>
+      <h2>&#128187; Planner</h2>
       <div class="sub">Plan in detail on a big screen</div>
       <p>Build routes on the VNC, brief NOTAMs and weather, generate printable
-         flight reports, then export the plan as JSON straight into the phone app.</p>
+         flight reports, then export the plan as a JSON file straight into
+         Glider.</p>
       <div class="qr"><span>&#128506;&#65039;</span>AVAILABLE ON<br>REQUEST</div>
       <a class="btn soon" href="#">Ask Leon for access</a>
+    </div>
+
+    <div class="card">
+      <h2>&#9992;&#65039; Glider</h2>
+      <div class="sub">The in-flight companion — one app, both platforms</div>
+      <p>Live glide range, MacCready speed-to-fly, plain-English NOTAMs,
+         frequency alerts, SOS messaging and automatic flight logging.</p>
+      <div class="platforms">
+        <div class="platform">
+          <h3>&#63743; iOS</h3>
+          <div class="qr"><span>&#9992;&#65039;</span>QR COMING<br>SOON</div>
+          <a class="btn soon" href="#">TestFlight — soon</a>
+        </div>
+        <div class="platform">
+          <h3>&#129302; Android</h3>
+          <div class="qr"><span>&#9992;&#65039;</span>QR COMING<br>SOON</div>
+          <a class="btn soon" href="#">APK — soon</a>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="companion">
-    The phone app and the web planner are <b>companions that work completely
-    independently</b> — plan on the desktop and import to your phone via a JSON
+    <b>Planner</b> and <b>Glider</b> are companions that work completely
+    independently — plan on the desktop and import to your phone via a JSON
     file, or do everything on the phone. Neither needs the other in the air.
   </div>
 
@@ -132,7 +145,7 @@
       pilot profile linked.</div>
     <div class="feature"><b>&#128228; Flight plan exports</b>
       IGC, GPX, KML, printable briefing packs, and JSON hand-off between
-      the planner and the phone app.</div>
+      Planner and Glider.</div>
   </div>
 
   <footer>
