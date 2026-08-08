@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glide Plan &amp; Fly — Grampians Soaring Club</title>
+<link rel="icon" type="image/png" href="gsc_logo.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(180deg, #6fb0df 0%, #dceef9 45%, #f6fbff 100%);
+    color: #10344f;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+  header { text-align: center; padding-top: 12px; }
+  header img { width: 130px; height: 130px; border-radius: 50%;
+    box-shadow: 0 8px 30px rgba(10, 40, 70, .25); }
+  h1 { margin-top: 14px; font-size: 34px; letter-spacing: .5px; color: #0d2c47; }
+  .tagline { margin-top: 6px; font-size: 16px; color: #2a5a80; }
+
+  .disclaimer {
+    margin: 26px auto 0; max-width: 760px;
+    background: #fff7e6; border: 2px solid #e0a63f; border-radius: 12px;
+    padding: 16px 20px; font-size: 15px; line-height: 1.5; color: #7a5410;
+    text-align: center; font-weight: 600;
+  }
+  .disclaimer strong { color: #a33; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 18px; margin-top: 34px; }
+  .card {
+    background: rgba(255,255,255,.9); border-radius: 16px; padding: 24px;
+    box-shadow: 0 6px 24px rgba(10,40,70,.12); display: flex;
+    flex-direction: column; align-items: center; text-align: center;
+  }
+  .card h2 { font-size: 20px; color: #0d2c47; }
+  .card .sub { font-size: 13px; color: #2a5a80; margin-top: 4px; }
+  .card p { font-size: 14px; line-height: 1.5; margin-top: 12px; color: #23425c; }
+  .qr {
+    width: 150px; height: 150px; margin-top: 16px; border-radius: 12px;
+    border: 2px dashed #7fb3d6; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; color: #4d84ab;
+    font-weight: 700; font-size: 13px; letter-spacing: 1px; gap: 6px;
+    background: #f2f9fe;
+  }
+  .qr img { width: 150px; height: 150px; border-radius: 12px; }
+  .qr span { font-size: 26px; }
+  .btn {
+    margin-top: 14px; display: inline-block; background: #1470b8; color: #fff;
+    padding: 10px 22px; border-radius: 8px; text-decoration: none;
+    font-weight: 600; font-size: 14px;
+  }
+  .btn.soon { background: #9fb8ca; pointer-events: none; }
+
+  .companion {
+    margin-top: 30px; text-align: center; font-size: 15px; line-height: 1.6;
+    color: #23425c; max-width: 740px; margin-left: auto; margin-right: auto;
+  }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px; margin-top: 26px; }
+  .feature {
+    background: rgba(255,255,255,.75); border-radius: 12px; padding: 16px;
+    font-size: 13.5px; line-height: 1.45; color: #23425c;
+  }
+  .feature b { display: block; color: #0d2c47; margin-bottom: 4px; font-size: 14.5px; }
+  footer { margin-top: 44px; text-align: center; font-size: 12.5px; color: #46708f; }
+  footer a { color: #1470b8; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="gsc_logo.png" alt="Grampians Soaring Club">
+    <h1>Glide Plan &amp; Fly</h1>
+    <div class="tagline">Cross-country planning and in-flight companion for the Grampians Soaring Club</div>
+  </header>
+
+  <div class="disclaimer">
+    &#9888;&#65039; This application is a <strong>work in progress</strong> and is
+    <strong>not to be relied upon</strong>. Grampians Soaring Club does
+    <strong>not endorse this application for operational use</strong>.
+    Always use official briefing sources and current charts.
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h2>&#128241; Phone App — iOS</h2>
+      <div class="sub">Fly with it in the cockpit</div>
+      <p>Live glide range, MacCready speed-to-fly, plain-English NOTAMs,
+         frequency alerts, SOS messaging and automatic flight logging.</p>
+      <div class="qr"><span>&#9992;&#65039;</span>QR COMING<br>SOON</div>
+      <a class="btn soon" href="#">TestFlight — coming soon</a>
+    </div>
+
+    <div class="card">
+      <h2>&#129302; Phone App — Android</h2>
+      <div class="sub">Same app, Android build</div>
+      <p>The identical companion for Android phones and tablets —
+         offline maps, NOTAM briefings and flight recovery included.</p>
+      <div class="qr"><span>&#9992;&#65039;</span>QR COMING<br>SOON</div>
+      <a class="btn soon" href="#">APK — coming soon</a>
+    </div>
+
+    <div class="card">
+      <h2>&#128187; Web Planner</h2>
+      <div class="sub">Plan in detail on a big screen</div>
+      <p>Build routes on the VNC, brief NOTAMs and weather, generate printable
+         flight reports, then export the plan as JSON straight into the phone app.</p>
+      <div class="qr"><span>&#128506;&#65039;</span>AVAILABLE ON<br>REQUEST</div>
+      <a class="btn soon" href="#">Ask Leon for access</a>
+    </div>
+  </div>
+
+  <div class="companion">
+    The phone app and the web planner are <b>companions that work completely
+    independently</b> — plan on the desktop and import to your phone via a JSON
+    file, or do everything on the phone. Neither needs the other in the air.
+  </div>
+
+  <div class="features">
+    <div class="feature"><b>&#127786;&#65039; SkySight lift forecasts</b>
+      Thermal strength and height along your route, plus a lift-strength map
+      overlay — with a free Open-Meteo fallback when SkySight is unavailable.</div>
+    <div class="feature"><b>&#128227; NOTAMs in plain English</b>
+      Live NAIPS briefings for your route decoded from contractions into
+      readable language, pinned on the map, with TAF/METAR alongside.</div>
+    <div class="feature"><b>&#127942; WeGlide upload</b>
+      Recorded flights export as IGC and upload to WeGlide with your
+      pilot profile linked.</div>
+    <div class="feature"><b>&#128228; Flight plan exports</b>
+      IGC, GPX, KML, printable briefing packs, and JSON hand-off between
+      the planner and the phone app.</div>
+  </div>
+
+  <footer>
+    Built by Leon for the <a href="https://www.grampianssoaring.club/">Grampians
+    Soaring Club</a>, Ararat VIC &middot; Work in progress &middot; Not for
+    operational use
+  </footer>
+
+</div>
+</body>
+</html>
