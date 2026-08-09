@@ -28,9 +28,7 @@
   }
   .disclaimer strong { color: #a33; }
 
-  .cards { display: grid; grid-template-columns: 1fr 1.6fr;
-    gap: 18px; margin-top: 34px; align-items: stretch; }
-  @media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
+  .cards { margin-top: 34px; }
   .card {
     background: rgba(255,255,255,.9); border-radius: 16px; padding: 24px;
     box-shadow: 0 6px 24px rgba(10,40,70,.12); display: flex;
@@ -40,8 +38,19 @@
   .card .sub { font-size: 13px; color: #2a5a80; margin-top: 4px; }
   .card p { font-size: 14px; line-height: 1.5; margin-top: 12px; color: #23425c; }
 
-  .platforms { display: flex; gap: 14px; margin-top: 16px; width: 100%; }
-  @media (max-width: 500px) { .platforms { flex-direction: column; } }
+  .platforms { display: grid; grid-template-columns: 2fr 1fr; gap: 14px;
+    margin-top: 18px; width: 100%; align-items: start; }
+  @media (max-width: 720px) { .platforms { grid-template-columns: 1fr; } }
+  .steps { display: flex; gap: 12px; width: 100%; }
+  @media (max-width: 480px) { .steps { flex-direction: column; } }
+  .step { flex: 1; display: flex; flex-direction: column; align-items: center; }
+  .step .n {
+    width: 24px; height: 24px; border-radius: 50%; background: #1470b8;
+    color: #fff; font-size: 13px; font-weight: 700; display: flex;
+    align-items: center; justify-content: center; margin-bottom: 6px;
+  }
+  .step .what { font-size: 13px; font-weight: 600; color: #0d2c47;
+    margin-bottom: 8px; }
   .platform {
     flex: 1; border: 1.5px solid rgba(20,112,184,.3); border-radius: 12px;
     padding: 14px 10px; display: flex; flex-direction: column;
@@ -110,11 +119,24 @@
          SOS messaging and automatic flight logging.</p>
       <div class="platforms">
         <div class="platform">
-          <h3>&#63743; iOS</h3>
-          <div class="qr"><img src="qr_ios.png" alt="QR — join the Glide Planner TestFlight beta"></div>
-          <a class="btn" href="https://testflight.apple.com/join/9WuHzYT2">Join TestFlight</a>
-          <div class="pending">Install Apple&rsquo;s <b>TestFlight</b> app first,
-            then scan the code or tap the button</div>
+          <h3>&#63743; iOS &mdash; two steps</h3>
+          <div class="steps">
+            <div class="step">
+              <div class="n">1</div>
+              <div class="what">Get TestFlight</div>
+              <div class="qr"><img src="qr_testflight.png" alt="QR — TestFlight on the App Store"></div>
+              <a class="btn" href="https://apps.apple.com/app/testflight/id899247664">App Store</a>
+            </div>
+            <div class="step">
+              <div class="n">2</div>
+              <div class="what">Join the beta</div>
+              <div class="qr"><img src="qr_ios.png" alt="QR — join the Glide Planner TestFlight beta"></div>
+              <a class="btn" href="https://testflight.apple.com/join/9WuHzYT2">Join beta</a>
+            </div>
+          </div>
+          <div class="pending">Apple distributes beta apps through
+            <b>TestFlight</b>, so install that first &mdash; step 2 will not
+            work without it.</div>
         </div>
         <div class="platform">
           <h3>&#129302; Android</h3>
