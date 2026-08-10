@@ -29,6 +29,7 @@
   .disclaimer strong { color: #a33; }
 
   .cards { margin-top: 34px; }
+  .cards .card + .card { margin-top: 18px; }
   .card {
     background: rgba(255,255,255,.9); border-radius: 16px; padding: 24px;
     box-shadow: 0 6px 24px rgba(10,40,70,.12); display: flex;
@@ -78,6 +79,14 @@
     background: #fff7e6; border: 1px solid #e0a63f; border-radius: 7px;
     padding: 5px 8px; text-align: center;
   }
+
+  /* 16:9 box the iframe fills, so the video scales with the column */
+  .video-frame {
+    position: relative; width: 100%; max-width: 720px; margin-top: 16px;
+    aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden;
+    background: #0d2c47; box-shadow: 0 6px 20px rgba(10,40,70,.18);
+  }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
   .companion {
     margin-top: 30px; text-align: center; font-size: 15px; line-height: 1.6;
@@ -144,6 +153,19 @@
           <a class="btn" href="https://github.com/leonfliesthings-dev/glide/releases/latest/download/Glider.apk">Download APK</a>
         </div>
       </div>
+    </div>
+
+    <div class="card">
+      <h2>&#9654;&#65039; Watch the walkthrough</h2>
+      <div class="sub">A tour of the app &mdash; plan a task, brief it, fly it, log it</div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/hso4hiEFiHM"
+                title="Glide Planner walkthrough"
+                loading="lazy" allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+      </div>
+      <a class="btn" href="https://youtu.be/hso4hiEFiHM">Watch on YouTube</a>
     </div>
   </div>
 
